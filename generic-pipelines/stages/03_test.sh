@@ -3,8 +3,12 @@
 echo
 echo "Testing Application"
 
+pushd "$PROJECT_DIR"
+
 application_type=$(jq -r .application.type pipeline.json)
 test_path=$(jq -r .test.path pipeline.json)
+
+set -x
 
 case "${application_type}" in
   "java")
@@ -24,3 +28,7 @@ case "${application_type}" in
     exit 1
     ;;
 esac
+
+popd
+
+set +x
