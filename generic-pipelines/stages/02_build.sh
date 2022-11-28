@@ -5,6 +5,7 @@ echo "Building Application"
 
 pushd "$PROJECT_DIR"
 
+
 application_type=$(jq -r .application.type pipeline.json)
 
 set -x
@@ -26,7 +27,6 @@ case "${application_type}" in
     ;;
 esac
 
-popd
-
 set +x
 
+popd

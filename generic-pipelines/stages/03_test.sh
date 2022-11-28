@@ -29,6 +29,6 @@ case "${application_type}" in
     ;;
 esac
 
-popd
-
 set +x
+
+popd
