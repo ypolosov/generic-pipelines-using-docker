@@ -18,7 +18,7 @@ case "${application_type}" in
     dotnet build -c Release
     ;;
   "node")
-    npm install
+    npm ci
     ;;
   *)
     echo "Unable to build application type ${application_type}"
