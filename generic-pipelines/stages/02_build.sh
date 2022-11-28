@@ -3,10 +3,12 @@
 echo
 echo "Building Application"
 ls -la
-pwd
+# pwd
 pushd "$PROJECT_DIR"
 
 application_type=$(jq -r .application.type pipeline.json)
+
+set -x
 
 case "${application_type}" in
   "java")
@@ -25,6 +27,8 @@ case "${application_type}" in
     ;;
 esac
 
-pwd
+set +x
+
+# pwd
 popd
-pwd
+# pwd
