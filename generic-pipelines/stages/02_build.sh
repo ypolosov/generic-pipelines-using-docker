@@ -3,10 +3,9 @@
 echo
 echo "Building Application"
 ls -la
-PIPELINE="${PROJECT_DIR}/pipeline.json"
 pwd; pushd "$PROJECT_DIR"
 
-application_type=$(jq -r .application.type $PIPELINE)
+application_type=$(jq -r .application.type pipeline.json)
 
 case "${application_type}" in
   "java")
