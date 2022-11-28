@@ -8,7 +8,6 @@ pushd "$PROJECT_DIR"
 
 application_type=$(jq -r .application.type pipeline.json)
 
-set -x
 
 case "${application_type}" in
   "java")
@@ -27,6 +26,5 @@ case "${application_type}" in
     ;;
 esac
 
-set +x
 
 popd

@@ -8,8 +8,6 @@ pushd "$PROJECT_DIR"
 application_type=$(jq -r .application.type pipeline.json)
 test_path=$(jq -r .test.path pipeline.json)
 
-set -x
-
 case "${application_type}" in
   "java")
     mvn test
@@ -28,7 +26,5 @@ case "${application_type}" in
     exit 1
     ;;
 esac
-
-set +x
 
 popd
