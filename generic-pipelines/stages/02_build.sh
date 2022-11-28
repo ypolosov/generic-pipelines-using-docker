@@ -2,8 +2,11 @@
 
 echo
 echo "Building Application"
+pwd
+ls -la
+PIPELINE="${PROJECT_DIR}/pipeline.json"
 
-application_type=$(jq -r .application.type pipeline.json)
+application_type=$(jq -r .application.type $PIPELINE)
 
 case "${application_type}" in
   "java")
