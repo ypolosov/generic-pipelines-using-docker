@@ -1,5 +1,7 @@
 FROM node:lts
 
+USER node
+
 RUN curl -fsSL get.docker.com | sh
 
 RUN apt-get update && apt-get install -y \
@@ -14,4 +16,3 @@ COPY stages stages
 
 WORKDIR /app
 
-USER node
