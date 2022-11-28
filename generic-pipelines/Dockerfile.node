@@ -8,6 +8,8 @@ RUN apt-get update && apt-get install -y \
     jq \
     zip
 
+RUN npm install -g npm
+
 COPY stages stages
 
 WORKDIR /app
