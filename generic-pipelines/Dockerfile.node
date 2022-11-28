@@ -1,6 +1,5 @@
 FROM node:lts
 
-USER node
 
 RUN curl -fsSL get.docker.com | sh
 

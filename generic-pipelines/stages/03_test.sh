@@ -21,7 +21,7 @@ case "${application_type}" in
     dotnet test "${test_path}"
     ;;
   "node")
-    npm run test
+    node index.js
     ;;
   *)
     echo "Unable to test application type ${application_type}"

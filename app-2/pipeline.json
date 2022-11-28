@@ -1,6 +1,6 @@
 {
   "application": {
-    "name": "Sample Node App",
+    "name": "App 2",
     "type": "node"
   },
   "build": {

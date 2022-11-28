@@ -1,11 +1,11 @@
 {
   "application": {
-    "name": "Sample Java Application",
-    "type": "java"
+    "name": "App 1",
+    "type": "node"
   },
   "build": {
     "path": null,
-    "outputPath": null
+    "outputPath": "dist/"
   },
   "test": {
     "enabled": true,
@@ -13,9 +13,10 @@
   },
   "archive": {
     "registry": "docker.io",
-    "repository": "edwardsdl/sample-java"
+    "repository": "edwardsdl/sample-node"
   },
   "deploy": {
-    "containerPort": 8080
+    "containerPort": 5000
   }
 }
+
