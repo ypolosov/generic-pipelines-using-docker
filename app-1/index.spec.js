@@ -24,8 +24,7 @@ callback = function(response) {
       console.log(str);
     }else{
       console.error(`It must be: ${expectedGreeting} instead of ${str}`);
-    //   process.exit(1);
-    process.on('exit', function() { process.exit(1); });
+      process.exit(1);
     }
   });
 }
