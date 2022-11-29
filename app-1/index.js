@@ -13,3 +13,4 @@ server.listen(port, hostname, () => {
     console.log(`Server is started http://${hostname}:${port}/`);
 });
 
+module.exports = { serverApp: server };

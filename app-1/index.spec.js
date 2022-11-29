@@ -1,4 +1,4 @@
-require('./index.js');
+const {serverApp} = require('./index.js');
 const http = require('http');
 
 const expectedGreeting = `Hello world 'App 1'!`;
@@ -22,7 +22,7 @@ callback = function(response) {
     if(str === expectedGreeting){
       console.log(str);
     }else{
-      throw new Error(`It must be: ${expectedGreeting} instead of ${str}`);
+      console.error(`It must be: ${expectedGreeting} instead of ${str}`);
       process.exit(1);
     }
   });
@@ -31,8 +31,10 @@ callback = function(response) {
 try{
   http.request(options, callback).end();
 }catch(e){
-  throw new Error(`Can't make a request!`);
+  console.error(`Can't make a request!`);
   process.exit(1);
+}finally{
+  serverApp.close();
 }
 
 
