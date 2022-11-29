@@ -1,7 +1,7 @@
-const { exec } = require('node:child_process');
+const { fork } = require('node:child_process');
 const http = require('http');
 
-const child = exec('node',['index.js']);
+const fork = fork('index.js');
 
 const expectedGreeting = `Hello world 'App 1'!`;
 
@@ -35,8 +35,6 @@ try{
 }catch(e){
   console.error(`Can't make a request!`);
   process.exit(1);
-}finally{
-    child.kill();
 }
 
 
