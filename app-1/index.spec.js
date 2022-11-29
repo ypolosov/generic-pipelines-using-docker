@@ -1,4 +1,3 @@
-const {serverApp, port} = require('./index.js');
 const http = require('http');
 
 
@@ -31,11 +30,7 @@ callback = function(response) {
 }
 
 try{
-    serverApp.on('connect', (req) => {
-        console.log('Connected!!!');
         http.request(options, callback).end();
-        console.log('Requested!!!');
-    })
 }catch(e){
   console.error(`Can't make a request!`);
   process.exit(1);
