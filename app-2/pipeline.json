@@ -1,7 +1,8 @@
 {
   "application": {
     "name": "App 2",
-    "type": "node"
+    "type": "node",
+    "port": 3001
   },
   "build": {
     "path": null,
@@ -18,7 +19,6 @@
     "tagName": "2.2.0"
   },
   "deploy": {
-    "containerPort": 3001
   }
 }
 

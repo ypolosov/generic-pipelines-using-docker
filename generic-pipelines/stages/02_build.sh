@@ -6,10 +6,10 @@ echo "Building Application"
 pushd "$PROJECT_DIR"
 
 
-application_type=$(jq -r .application.type pipeline.json)
+appType=$(jq -r .application.type pipeline.json)
 
 
-case "${application_type}" in
+case "${appType}" in
   "java")
     mvn clean package
     ;;
@@ -21,7 +21,7 @@ case "${application_type}" in
     npm ci
     ;;
   *)
-    echo "Unable to build application type ${application_type}"
+    echo "Unable to build application type ${appType}"
     exit 1
     ;;
 esac

@@ -5,10 +5,12 @@ echo "Testing Application"
 
 pushd "$PROJECT_DIR"
 
-application_type=$(jq -r .application.type pipeline.json)
-test_path=$(jq -r .test.path pipeline.json)
+appType=$(jq -r .application.type pipeline.json)
+port=$(jq -r .application.port pipeline.json)
+appName=$(jq -r .application.name pipeline.json)
+testPath=$(jq -r .test.path pipeline.json)
 
-case "${application_type}" in
+case "${appType}" in
   "java")
     mvn test
     ;;
@@ -16,13 +18,15 @@ case "${application_type}" in
     # The path to the test project must be set until
     # https://github.com/Microsoft/vstest/issues/1129 is
     # resolved.
-    dotnet test "${test_path}"
+    dotnet test "${testPath}"
     ;;
   "node")
+    export PORT=${port}
+    export APP_NAME=${appName}
     npm test
     ;;
   *)
-    echo "Unable to test application type ${application_type}"
+    echo "Unable to test application type ${appType}"
     exit 1
     ;;
 esac
