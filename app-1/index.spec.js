@@ -28,7 +28,12 @@ callback = function(response) {
   });
 }
 
-http.request(options, callback).end();
+try{
+  http.request(options, callback).end();
+}catch(e){
+  throw new Error(`Can't make a request!`);
+  process.exit(1);
+}
 
 
 
