@@ -1,5 +1,7 @@
-const {serverApp} = require('./index.js');
+const { exec } = require('node:child_process');
 const http = require('http');
+
+const child = exec('./index.js');
 
 const expectedGreeting = `Hello world 'App 1'!`;
 
@@ -34,7 +36,7 @@ try{
   console.error(`Can't make a request!`);
   process.exit(1);
 }finally{
-  serverApp.close();
+    child.kill();
 }
 
 
