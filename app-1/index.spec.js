@@ -1,7 +1,7 @@
 require('./index.js');
 const http = require('http');
 
-const expectedGreeting = `Hello world 'app-1'!`;
+const expectedGreeting = `Hello world 'App 1'!`;
 
 var options = {
     host: 'localhost',
