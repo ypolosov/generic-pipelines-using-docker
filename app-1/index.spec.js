@@ -30,7 +30,7 @@ callback = function(response) {
 }
 
 try{
-    serverApp.on(() => {
+    serverApp.on('connect', () => {
         http.request(options, callback).end();
     })
 }catch(e){
