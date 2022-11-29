@@ -1,3 +1,4 @@
+require('./index.js');
 const http = require('http');
 
 const expectedGreeting = `Hello world 'app-1'!`;
