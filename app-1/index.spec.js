@@ -1,7 +1,7 @@
 const http = require('http');
 
 
-const expectedGreeting = `Hello world 'App 1'!`;
+const expectedGreeting = `Hello world 'App 2'!`;
 
 var options = {
     host: 'localhost',
@@ -30,7 +30,7 @@ callback = function(response) {
 }
 
 try{
-        http.request(options, callback).end();
+  http.request(options, callback).end();
 }catch(e){
   console.error(`Can't make a request!`);
   process.exit(1);
