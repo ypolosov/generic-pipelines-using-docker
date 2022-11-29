@@ -6,7 +6,7 @@ const expectedGreeting = `Hello world 'App 1'!`;
 var options = {
     host: 'localhost',
     path: '/',
-    port: port,
+    port: process.env.PORT,
     method: 'GET'
   };
   
