@@ -23,6 +23,7 @@ callback = function(response) {
       console.log(str);
     }else{
       throw new Error(`It must be: ${expectedGreeting}`);
+      process.exit(1);
     }
   });
 }
