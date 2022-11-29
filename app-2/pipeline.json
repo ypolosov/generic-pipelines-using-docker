@@ -18,7 +18,7 @@
     "tagName": "2.2.0"
   },
   "deploy": {
-    "containerPort": 5000
+    "containerPort": 3001
   }
 }
 

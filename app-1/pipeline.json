@@ -18,7 +18,7 @@
     "tagName": "0.1.0"
   },
   "deploy": {
-    "containerPort": 5000
+    "containerPort": 3000
   }
 }
 
