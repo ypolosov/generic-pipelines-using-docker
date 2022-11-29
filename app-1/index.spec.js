@@ -1,7 +1,7 @@
-const { exec } = require('node:child_process');
+const { execSync } = require('node:child_process');
 const http = require('http');
 
-const child = exec('./index.js');
+const child = execSync('./index.js');
 
 const expectedGreeting = `Hello world 'App 1'!`;
 
