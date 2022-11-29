@@ -7,7 +7,8 @@ const expectedGreeting = `Hello world 'App 1'!`;
 var options = {
     host: 'localhost',
     path: '/',
-    port: port
+    port: port,
+    method: 'GET'
   };
   
 callback = function(response) {
@@ -30,8 +31,10 @@ callback = function(response) {
 }
 
 try{
-    serverApp.on('connect', () => {
+    serverApp.on('connect', (req) => {
+        console.log('Connected!!!');
         http.request(options, callback).end();
+        console.log('Requested!!!');
     })
 }catch(e){
   console.error(`Can't make a request!`);
