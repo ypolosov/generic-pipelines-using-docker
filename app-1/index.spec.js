@@ -1,13 +1,13 @@
-const { fork } = require('node:child_process');
+const {serverApp, port} = require('./index.js');
 const http = require('http');
 
-const server = fork('index.js');
+
 const expectedGreeting = `Hello world 'App 1'!`;
 
 var options = {
     host: 'localhost',
     path: '/',
-    port: process.env.PORT
+    port: port
   };
   
 callback = function(response) {
@@ -30,7 +30,9 @@ callback = function(response) {
 }
 
 try{
-  http.request(options, callback).end();
+    serverApp.on(() => {
+        http.request(options, callback).end();
+    })
 }catch(e){
   console.error(`Can't make a request!`);
   process.exit(1);
