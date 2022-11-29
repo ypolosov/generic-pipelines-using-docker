@@ -13,7 +13,9 @@
   },
   "archive": {
     "registry": "docker.io",
-    "repository": "edwardsdl/sample-node"
+    "account": "ypolosov",
+    "appName": "app-2",
+    "tagName": "2.2.0"
   },
   "deploy": {
     "containerPort": 5000
