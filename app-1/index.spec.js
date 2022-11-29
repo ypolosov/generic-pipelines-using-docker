@@ -1,8 +1,7 @@
 const { fork } = require('node:child_process');
 const http = require('http');
 
-const fork = fork('index.js');
-
+const server = fork('index.js');
 const expectedGreeting = `Hello world 'App 1'!`;
 
 var options = {
