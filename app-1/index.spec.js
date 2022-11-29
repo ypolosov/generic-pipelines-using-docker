@@ -1,3 +1,4 @@
+const http = require('http');
 const {port} = require("./index.js");
 
 const expectedGreeting = `Hello world 'app-1'!`;
