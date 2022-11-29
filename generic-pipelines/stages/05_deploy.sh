@@ -5,13 +5,14 @@ echo "Deploying Application"
 
 pushd "$PROJECT_DIR"
 
-container_port=$(jq -r .deploy.containerPort pipeline.json)
+containerPort=$(jq -r .deploy.containerPort pipeline.json)
 registry=$(jq -r .archive.registry pipeline.json)
 account=$(jq -r .archive.account pipeline.json)
 appName=$(jq -r .archive.appName pipeline.json)
 tagName=$(jq -r .archive.tagName pipeline.json)
 image="${registry}/${account}/${appName}:${tagName}"
-
-docker run -dp "${container_port}:${container_port}" "${image}"
+export PORT=${containerPort}
+export APP_NAME=${appName}
+docker run -dp "${containerPort}:${containerPort}" "${image}"
 
 popd
