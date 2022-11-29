@@ -19,7 +19,7 @@ case "${application_type}" in
     dotnet test "${test_path}"
     ;;
   "node")
-    node index.spec.js
+    npm test
     ;;
   *)
     echo "Unable to test application type ${application_type}"
