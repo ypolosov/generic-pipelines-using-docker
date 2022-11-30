@@ -17,6 +17,8 @@ jobs:
     environment:
       PROJECT_DIR: app-1
       REPOSITORY_URL: https://github.com/ypolosov/generic-pipelines-using-docker.git
+      DOCKER_USERNAME: $DOCKER_USERNAME
+      DOCKER_PASSWORD: $DOCKER_PASSWORD
     working_directory: /app
     steps:
       - setup_remote_docker:
@@ -39,6 +41,8 @@ jobs:
     environment:
       PROJECT_DIR: app-2
       REPOSITORY_URL: https://github.com/ypolosov/generic-pipelines-using-docker.git
+      DOCKER_USERNAME: $DOCKER_USERNAME
+      DOCKER_PASSWORD: $DOCKER_PASSWORD
     working_directory: /app
     steps:
       - setup_remote_docker:

@@ -12,6 +12,10 @@ appName=$(jq -r .archive.appName pipeline.json)
 tagName=$(jq -r .archive.tagName pipeline.json)
 image="${registry}/${account}/${appName}:${tagName}"
 
+docker login \
+    -u "${DOCKER_USERNAME?:}" \
+    -p "${DOCKER_PASSWORD?:}" \
+    "${registry}"
 docker build -t "${image}" .
 docker push "${image}"
 
