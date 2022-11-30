@@ -23,18 +23,18 @@ callback = function(response) {
     if(str === expectedGreeting){
       console.log(str);
     }else{
-      console.error(`It must be: ${expectedGreeting} instead of ${str}`);
-      process.exit(1);
+      throw new Error(`It must be: ${expectedGreeting} instead of ${str}`);
+      // process.exit(1);
     }
   });
 }
 
-// try{
+try{
   http.request(options, callback).end();
-// }catch(e){
-//   console.error(`Can't make a request!`);
-//   process.exit(1);
-// }
+}catch(e){
+  throw new Error(`Can't make a request!`);
+  // process.exit(1);
+}
 
 
 

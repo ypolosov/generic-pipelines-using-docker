@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+set -e
+
 echo
 echo "Testing Application"
 
@@ -20,7 +22,6 @@ case "${appType}" in
     dotnet test "${testPath}"
     ;;
   "node")
-    # exit 125
     export PORT=${port}
     export APP_NAME=${appName}
     npm start & npm test
