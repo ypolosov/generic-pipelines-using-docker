@@ -16,6 +16,7 @@ jobs:
       - image: ypolosov/agnostic-pipeline
     environment:
       PROJECT_DIR: app-1
+      REPOSITORY_URL: https://github.com/ypolosov/generic-pipelines-using-docker.git
     steps:
       - setup_remote_docker:
           docker_layer_caching: true
@@ -36,6 +37,7 @@ jobs:
       - image: ypolosov/agnostic-pipeline
     environment:
       PROJECT_DIR: app-2
+      REPOSITORY_URL: https://github.com/ypolosov/generic-pipelines-using-docker.git
     steps:
       - setup_remote_docker:
           docker_layer_caching: true

@@ -4,10 +4,6 @@ set -e
 echo
 echo "Cloning Application"
 
-pushd "$PROJECT_DIR"
 
-repository=$(jq -r .clone.repository pipeline.json)
+git clone "${REPOSITORY_URL:?}" .
 
-git clone "${repository:?}" .
-
-popd
