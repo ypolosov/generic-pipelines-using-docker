@@ -1,7 +1,7 @@
 const http = require('http');
 
 
-const expectedGreeting = `Hello world 'App 2'!`;
+const expectedGreeting = `Hello world 'App 1'!`;
 
 var options = {
     host: 'localhost',
@@ -24,7 +24,6 @@ callback = function(response) {
       console.log(str);
     }else{
       throw new Error(`It must be: ${expectedGreeting} instead of ${str}`);
-      // process.exit(1);
     }
   });
 }
@@ -33,7 +32,6 @@ try{
   http.request(options, callback).end();
 }catch(e){
   throw new Error(`Can't make a request!`);
-  // process.exit(1);
 }
 
 
