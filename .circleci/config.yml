@@ -16,9 +16,9 @@ jobs:
       - run: # run a command
           name: Generate config
           command: |
-            ./generate-config > generated_config.yml
+            ./.circleci/generate-config > .circleci/generated_config.yml
       - continuation/continue:
-          configuration_path: generated_config.yml # use newly generated config to continue
+          configuration_path: .circleci/generated_config.yml # use newly generated config to continue
 
 # our single workflow, that triggers the setup job defined above
 workflows:
