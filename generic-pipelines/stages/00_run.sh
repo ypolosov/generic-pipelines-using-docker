@@ -1,4 +1,5 @@
 #!/usr/bin/env sh
+set -e
 
 /stages/01_clone.sh \
  && /stages/02_build.sh \
