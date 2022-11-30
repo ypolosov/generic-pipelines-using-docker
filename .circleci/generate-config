@@ -1,1 +1,70 @@
-echo "XXXXXXXXXX xx XXXXXXXXXXX"
+version: 2.1
+
+orbs:
+  maven: circleci/maven@1.2.0
+
+# the default pipeline parameters, which will be updated according to
+# the results of the path-filtering orb
+parameters:
+  run-build-app-1-job:
+    type: boolean
+    default: false
+  run-build-app-2-job:
+    type: boolean
+    default: false
+
+# here we specify our workflows, most of which are conditionally
+# executed based upon pipeline parameter values. Each workflow calls a
+# specific job defined above, in the jobs section.
+workflows:
+  # when pipeline parameter, run-build-service-1-job is true, the
+  # build-service-1 job is triggered.
+  app-1:
+    when: << pipeline.parameters.run-build-app-1-job >>
+    jobs:
+      build:
+        docker:
+          - image: ypolosov/app-1:0.1.0
+        steps:
+          - setup_remote_docker:
+              docker_layer_caching: true
+          - run:
+              name: Clone
+              command: /stages/01_clone.sh
+          - run:
+              name: Build
+              command: /stages/02_build.sh
+          - run:
+              name: Test
+              command: /stages/03_test.sh
+          - run:
+              name: Archive
+              command: /stages/04_archive.sh
+  # when pipeline parameter, run-build-service-2-job is true, the
+  # build-service-2 job is triggered.
+  app-2:
+    when: << pipeline.parameters.run-build-app-2-job >>
+    jobs:
+      build:
+        docker:
+          - image: ypolosov/app-2:2.2.0
+        steps:
+          - setup_remote_docker:
+              docker_layer_caching: true
+          - run:
+              name: Clone
+              command: /stages/01_clone.sh
+          - run:
+              name: Build
+              command: /stages/02_build.sh
+          - run:
+              name: Test
+              command: /stages/03_test.sh
+          - run:
+              name: Archive
+              command: /stages/04_archive.sh
+  # when pipeline parameter, run-build-service-1-job OR
+  # run-build-service-2-job is true, run-integration-tests job is
+  # triggered. see:
+  # https://circleci.com/docs/configuration-reference/#logic-statements
+  # for more information.
