@@ -11,9 +11,27 @@ parameters:
     default: false
 
 jobs:
-  trigger-workflow:
+  app-1-workflow:
     docker:
       - image: ypolosov/app-1:0.1.0
+    steps:
+      - setup_remote_docker:
+          docker_layer_caching: true
+      - run:
+          name: Clone
+          command: /stages/01_clone.sh
+      - run:
+          name: Build
+          command: /stages/02_build.sh
+      - run:
+          name: Test
+          command: /stages/03_test.sh
+      - run:
+          name: Archive
+          command: /stages/04_archive.sh
+  app-2-workflow:
+    docker:
+      - image: ypolosov/app-2:2.2.0
     steps:
       - setup_remote_docker:
           docker_layer_caching: true
@@ -39,11 +57,11 @@ workflows:
   app-1:
     when: << pipeline.parameters.run-build-app-1-job >>
     jobs:
-      - trigger-workflow
+      - app-1-workflow
 
   # when pipeline parameter, run-build-service-2-job is true, the
   # build-service-2 job is triggered.
   app-2:
     when: << pipeline.parameters.run-build-app-2-job >>
     jobs:
-      - trigger-workflow
+      - app-2-workflow
