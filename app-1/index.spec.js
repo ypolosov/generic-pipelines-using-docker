@@ -29,12 +29,12 @@ callback = function(response) {
   });
 }
 
-try{
+// try{
   http.request(options, callback).end();
-}catch(e){
-  console.error(`Can't make a request!`);
-  process.exit(1);
-}
+// }catch(e){
+//   console.error(`Can't make a request!`);
+//   process.exit(1);
+// }
 
 
 
