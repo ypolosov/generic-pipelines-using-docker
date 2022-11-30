@@ -20,8 +20,8 @@ workflows:
           # line:
           # <regex path-to-test> <parameter-to-set> <value-of-pipeline-parameter>
           mapping: |
-            app-11/.* run-build-app-1-job true
-            app-22/.* run-build-app-2-job true
+            app-1/.* run-build-app-1-job true
+            app-2/.* run-build-app-2-job true
           base-revision: master
           # this is the path of the configuration we should trigger once
           # path filtering and pipeline parameter value updates are
