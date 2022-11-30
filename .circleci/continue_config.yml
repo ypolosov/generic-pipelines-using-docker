@@ -14,6 +14,8 @@ jobs:
   app-1-workflow:
     docker:
       - image: ypolosov/agnostic-pipeline
+    environment:
+      PROJECT_DIR: app-1
     steps:
       - setup_remote_docker:
           docker_layer_caching: true
@@ -32,6 +34,8 @@ jobs:
   app-2-workflow:
     docker:
       - image: ypolosov/agnostic-pipeline
+    environment:
+      PROJECT_DIR: app-2
     steps:
       - setup_remote_docker:
           docker_layer_caching: true
