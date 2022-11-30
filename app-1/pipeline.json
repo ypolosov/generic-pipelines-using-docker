@@ -4,6 +4,9 @@
     "type": "node",
     "port": 3000
   },
+  "clone": {
+    "repository": "https://github.com/ypolosov/generic-pipelines-using-docker.git"
+  },
   "build": {
     "path": null,
     "outputPath": "dist/"
