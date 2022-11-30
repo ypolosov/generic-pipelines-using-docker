@@ -13,7 +13,7 @@ parameters:
 jobs:
   app-1-workflow:
     docker:
-      - image: ypolosov/app-1:0.1.0
+      - image: edwardsdl/node-pipeline
     steps:
       - setup_remote_docker:
           docker_layer_caching: true
@@ -31,7 +31,7 @@ jobs:
           command: /stages/04_archive.sh
   app-2-workflow:
     docker:
-      - image: ypolosov/app-2:2.2.0
+      - image: edwardsdl/node-pipeline
     steps:
       - setup_remote_docker:
           docker_layer_caching: true
