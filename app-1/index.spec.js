@@ -23,7 +23,7 @@ callback = function(response) {
     if(str === expectedGreeting){
       console.log(str);
     }else{
-      console.error(`It must be: ${expectedGreeting} instead of ${str}`);
+      throw new Error(`It must be: ${expectedGreeting} instead of ${str}`);
       process.exit(1);
     }
   });
