@@ -17,8 +17,6 @@ jobs:
     environment:
       PROJECT_DIR: app-1
       REPOSITORY_URL: https://github.com/ypolosov/generic-pipelines-using-docker.git
-      DOCKER_USERNAME: $DOCKER_USERNAME
-      DOCKER_PASSWORD: $DOCKER_PASSWORD
     working_directory: /app
     steps:
       - setup_remote_docker:
@@ -35,14 +33,15 @@ jobs:
       - run:
           name: Archive
           command: /stages/04_archive.sh
+          environment:
+            DOCKER_USERNAME: $DOCKER_USERNAME
+            DOCKER_PASSWORD: $DOCKER_PASSWORD
   app-2-workflow:
     docker:
       - image: ypolosov/agnostic-pipeline
     environment:
       PROJECT_DIR: app-2
       REPOSITORY_URL: https://github.com/ypolosov/generic-pipelines-using-docker.git
-      DOCKER_USERNAME: $DOCKER_USERNAME
-      DOCKER_PASSWORD: $DOCKER_PASSWORD
     working_directory: /app
     steps:
       - setup_remote_docker:
@@ -59,6 +58,9 @@ jobs:
       - run:
           name: Archive
           command: /stages/04_archive.sh
+          environment:
+            DOCKER_USERNAME: $DOCKER_USERNAME
+            DOCKER_PASSWORD: $DOCKER_PASSWORD
 
 # here we specify our workflows, most of which are conditionally
 # executed based upon pipeline parameter values. Each workflow calls a
