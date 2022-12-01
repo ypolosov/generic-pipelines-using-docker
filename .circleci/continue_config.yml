@@ -33,8 +33,8 @@ jobs:
       - run:
           name: Archive
           command: |
-            echo 'export DOCKER_USERNAME="$DOCKER_USERNAME"' >> "$BASH_ENV"
-            echo 'export DOCKER_PASSWORD="$DOCKER_PASSWORD"' >> "$BASH_ENV"
+            export DOCKER_USERNAME="$DOCKER_USERNAME"
+            export DOCKER_PASSWORD="$DOCKER_PASSWORD"
             /stages/04_archive.sh
   app-2-workflow:
     docker:
@@ -58,8 +58,8 @@ jobs:
       - run:
           name: Archive
           command: |
-            echo 'export DOCKER_USERNAME="$DOCKER_USERNAME"' >> "$BASH_ENV"
-            echo 'export DOCKER_PASSWORD="$DOCKER_PASSWORD"' >> "$BASH_ENV"
+            export DOCKER_USERNAME="$DOCKER_USERNAME"
+            export DOCKER_PASSWORD="$DOCKER_PASSWORD"
             /stages/04_archive.sh
 
 # here we specify our workflows, most of which are conditionally
