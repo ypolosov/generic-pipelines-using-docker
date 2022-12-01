@@ -32,10 +32,10 @@ jobs:
           command: /stages/03_test.sh
       - run:
           name: Archive
-          command: /stages/04_archive.sh
-          environment:
-            DOCKER_USERNAME: 12345
-            DOCKER_PASSWORD: 67890
+          command: |
+            echo 'export DOCKER_USERNAME="$DOCKER_USERNAME"' >> "$BASH_ENV"
+            echo 'export DOCKER_PASSWORD="$DOCKER_PASSWORD"' >> "$BASH_ENV"
+            /stages/04_archive.sh
   app-2-workflow:
     docker:
       - image: ypolosov/agnostic-pipeline
@@ -57,10 +57,10 @@ jobs:
           command: /stages/03_test.sh
       - run:
           name: Archive
-          command: /stages/04_archive.sh
-          environment:
-            DOCKER_USERNAME: 12345
-            DOCKER_PASSWORD: 67890
+          command: |
+            echo 'export DOCKER_USERNAME="$DOCKER_USERNAME"' >> "$BASH_ENV"
+            echo 'export DOCKER_PASSWORD="$DOCKER_PASSWORD"' >> "$BASH_ENV"
+            /stages/04_archive.sh
 
 # here we specify our workflows, most of which are conditionally
 # executed based upon pipeline parameter values. Each workflow calls a
