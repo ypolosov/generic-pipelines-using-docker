@@ -34,8 +34,8 @@ jobs:
           name: Archive
           command: /stages/04_archive.sh
           environment:
-            DOCKER_USERNAME: ypolosov
-            DOCKER_PASSWORD: xxxxxxxx
+            DOCKER_USERNAME: 12345
+            DOCKER_PASSWORD: 67890
   app-2-workflow:
     docker:
       - image: ypolosov/agnostic-pipeline
@@ -59,8 +59,8 @@ jobs:
           name: Archive
           command: /stages/04_archive.sh
           environment:
-            DOCKER_USERNAME: $DOCKER_USERNAME
-            DOCKER_PASSWORD: $DOCKER_PASSWORD
+            DOCKER_USERNAME: 12345
+            DOCKER_PASSWORD: 67890
 
 # here we specify our workflows, most of which are conditionally
 # executed based upon pipeline parameter values. Each workflow calls a
