@@ -3,8 +3,8 @@ set -e
 
 echo
 echo "Archiving Application"
-echo $DOCKER_USERNAME
-echo $DOCKER_PASSWORD
+echo "${DOCKER_USERNAME?:}"
+echo "${DOCKER_PASSWORD?:}"
 
 pushd "$PROJECT_DIR"
 
@@ -18,7 +18,7 @@ image="${registry}/${account}/${appName}:${tagName}"
 #     -u "${DOCKER_USERNAME?:}" \
 #     -p "${DOCKER_PASSWORD?:}" \
 #     "${registry}"
-echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin "${registry}"
+echo "${DOCKER_PASSWORD?:}" | docker login -u "${DOCKER_USERNAME?:}" --password-stdin "${registry}"
 docker build -t "${image}" .
 docker push "${image}"
 
