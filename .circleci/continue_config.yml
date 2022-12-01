@@ -33,7 +33,7 @@ jobs:
       - run:
           name: Archive
           command: |
-            export DOCKER_USERNAME="$DOCKER_USERNAME"
+            export DOCKER_USERNAME=ypolosov
             export DOCKER_PASSWORD="$DOCKER_PASSWORD"
             /stages/04_archive.sh
   app-2-workflow:
@@ -58,7 +58,7 @@ jobs:
       - run:
           name: Archive
           command: |
-            export DOCKER_USERNAME="$DOCKER_USERNAME"
+            export DOCKER_USERNAME=ypolosov
             export DOCKER_PASSWORD="$DOCKER_PASSWORD"
             /stages/04_archive.sh
 
