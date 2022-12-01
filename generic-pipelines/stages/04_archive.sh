@@ -16,7 +16,7 @@ image="${registry}/${account}/${appName}:${tagName}"
 #     -u "${DOCKER_USERNAME?:}" \
 #     -p "${DOCKER_PASSWORD?:}" \
 #     "${registry}"
-echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
+echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin "${registry}"
 docker build -t "${image}" .
 docker push "${image}"
 
