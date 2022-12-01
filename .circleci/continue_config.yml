@@ -34,8 +34,8 @@ jobs:
           name: Archive
           command: /stages/04_archive.sh
           environment:
-            DOCKER_USERNAME: $DOCKER_USERNAME
-            DOCKER_PASSWORD: $DOCKER_PASSWORD
+            DOCKER_USERNAME: ypolosov
+            DOCKER_PASSWORD: xxxxxxxx
   app-2-workflow:
     docker:
       - image: ypolosov/agnostic-pipeline
