@@ -3,6 +3,8 @@ set -e
 
 echo
 echo "Archiving Application"
+echo $DOCKER_USERNAME
+echo $DOCKER_PASSWORD
 
 pushd "$PROJECT_DIR"
 
