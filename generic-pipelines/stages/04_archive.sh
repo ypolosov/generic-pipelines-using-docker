@@ -12,10 +12,10 @@ appName=$(jq -r .archive.appName pipeline.json)
 tagName=$(jq -r .archive.tagName pipeline.json)
 image="${registry}/${account}/${appName}:${tagName}"
 
-if [[ ! -z "${DOCKER_USERNAME}" && ! -z "${DOCKER_PASSWORD}" ]]
+if [[ ! -z "${DOCKER_PASSWORD}" ]]
 then
     # cloud running
-    echo "${DOCKER_PASSWORD?:}" | docker login -u "${DOCKER_USERNAME?:}" --password-stdin "${registry}"
+    echo "${DOCKER_PASSWORD?:}" | docker login -u "${account?:}" --password-stdin "${registry}"
 else
     # local running
     docker login
