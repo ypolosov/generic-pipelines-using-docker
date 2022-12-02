@@ -12,8 +12,8 @@ parameters:
 
 jobs:
   app-1-workflow:
-    docker:
-      - image: ypolosov/agnostic-pipeline
+    # docker:
+    #   - image: ypolosov/agnostic-pipeline
     environment:
       PROJECT_DIR: app-1
       REPOSITORY_URL: https://github.com/ypolosov/generic-pipelines-using-docker.git
