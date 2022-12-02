@@ -12,16 +12,16 @@ parameters:
 
 jobs:
   app-1-workflow:
-    # docker:
-    #   - image: ypolosov/agnostic-pipeline
+    docker:
+      - image: ypolosov/agnostic-pipeline
     environment:
       PROJECT_DIR: app-1
       REPOSITORY_URL: https://github.com/ypolosov/generic-pipelines-using-docker.git
     working_directory: /app
     resource_class: small
     steps:
-      # - setup_remote_docker:
-      #     docker_layer_caching: true
+      - setup_remote_docker:
+          docker_layer_caching: true
       - add_ssh_keys:
           fingerprints:
             - "68:57:52:54:24:68:1c:45:ce:95:57:f3:ef:de:23:9a"
@@ -45,7 +45,9 @@ jobs:
       - run:
           name: Test
           # command: /stages/test.sh
-          command: ssh ypolosov@37.139.105.194 -vvv -p 2222 hostname -f
+          command: |
+            ls -la /root/.ssh
+            ssh ypolosov@37.139.105.194 -vvv -p 2222 hostname -f
   app-2-workflow:
     docker:
       - image: ypolosov/agnostic-pipeline
