@@ -20,8 +20,8 @@ jobs:
     working_directory: /app
     resource_class: small
     steps:
-      - setup_remote_docker:
-          docker_layer_caching: true
+      # - setup_remote_docker:
+      #     docker_layer_caching: true
       - add_ssh_keys:
           fingerprints:
             - "68:57:52:54:24:68:1c:45:ce:95:57:f3:ef:de:23:9a"
@@ -44,7 +44,8 @@ jobs:
       #     command: /stages/05_deploy.sh
       - run:
           name: Test
-          command: /stages/test.sh
+          # command: /stages/test.sh
+          command: ssh ypolosov@37.139.105.194 -vvv -p 2222 hostname -f
   app-2-workflow:
     docker:
       - image: ypolosov/agnostic-pipeline
