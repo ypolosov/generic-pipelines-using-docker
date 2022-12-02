@@ -19,6 +19,9 @@
     "tagName": "0.1.0"
   },
   "deploy": {
+    "host": "37.139.105.194",
+    "user": "ypolosov",
+    "port": "2222"
   }
 }
 
