@@ -19,7 +19,8 @@ image="${registry}/${account}/${appName}:${tagName}"
 deployUser=$(jq -r .deploy.user pipeline.json)
 deployHost=$(jq -r .deploy.host pipeline.json)
 deployPort=$(jq -r .deploy.port pipeline.json)
-docker -H "ssh://${deployUser}@${deployHost}:${deployPort}" run --rm --net host -d -e PORT="${PORT}" APP_NAME="${APP_NAME}" -p "${port}:${port}" "${image}"
+set -x
+docker -H "ssh://${deployUser}@${deployHost}:${deployPort}" run --rm -d --net=host -e="PORT=${port}" -e="APP_NAME=${appName}" "${image}"
 
 
 popd

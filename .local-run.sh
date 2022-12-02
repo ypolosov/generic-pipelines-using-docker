@@ -8,6 +8,7 @@ docker run \
     --env REPOSITORY_URL=https://github.com/ypolosov/generic-pipelines-using-docker.git \
     -v /var/run/docker.sock:/var/run/docker.sock \
     -v ~/.docker:/root/.docker \
+    -v ~/.ssh:/root/.ssh:ro \
     docker.io/ypolosov/agnostic-pipeline \
     /stages/00_run.sh
 
