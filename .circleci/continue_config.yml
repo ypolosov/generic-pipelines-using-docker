@@ -44,10 +44,7 @@ jobs:
       #     command: /stages/05_deploy.sh
       - run:
           name: Test
-          # command: /stages/test.sh
-          command: |
-            ls -la /root/.ssh
-            ssh ypolosov@centrum.keenetic.pro -vvv -p 2222 hostname -f
+          command: /stages/test.sh
   app-2-workflow:
     docker:
       - image: ypolosov/agnostic-pipeline
