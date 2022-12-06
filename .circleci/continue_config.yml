@@ -28,17 +28,17 @@ jobs:
       - run:
           name: Clone
           command: /stages/01_clone.sh
-      # - run:
-      #     name: Build
-      #     command: /stages/02_build.sh
-      # - run:
-      #     name: Test
-      #     command: /stages/03_test.sh
-      # - run:
-      #     name: Archive
-      #     command: |
-      #       export DOCKER_PASSWORD="$DOCKER_PASSWORD"
-      #       /stages/04_archive.sh
+      - run:
+          name: Build
+          command: /stages/02_build.sh
+      - run:
+          name: Test
+          command: /stages/03_test.sh
+      - run:
+          name: Archive
+          command: |
+            export DOCKER_PASSWORD="$DOCKER_PASSWORD"
+            /stages/04_archive.sh
       - run:
           name: Deploy
           command: /stages/05_deploy.sh
@@ -62,17 +62,17 @@ jobs:
       - run:
           name: Clone
           command: /stages/01_clone.sh
-      # - run:
-      #     name: Build
-      #     command: /stages/02_build.sh
-      # - run:
-      #     name: Test
-      #     command: /stages/03_test.sh
-      # - run:
-      #     name: Archive
-      #     command: |
-      #       export DOCKER_PASSWORD="$DOCKER_PASSWORD"
-      #       /stages/04_archive.sh
+      - run:
+          name: Build
+          command: /stages/02_build.sh
+      - run:
+          name: Test
+          command: /stages/03_test.sh
+      - run:
+          name: Archive
+          command: |
+            export DOCKER_PASSWORD="$DOCKER_PASSWORD"
+            /stages/04_archive.sh
       - run:
           name: Deploy
           command: /stages/05_deploy.sh
