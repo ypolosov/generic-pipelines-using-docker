@@ -24,7 +24,7 @@ case "${appType}" in
   "node")
     export PORT=${port}
     export APP_NAME=${appName}
-    npm start & sleep 2 & npm test
+    npm test
     ;;
   *)
     echo "Unable to test application type ${appType}"
