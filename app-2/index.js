@@ -10,9 +10,8 @@ const server = http.createServer((req, res) => {
     res.setHeader('Content-Type', 'text/plain');
     res.end(`Hello world '${appName}'!`);
 });
-const runningServer = server.listen(port, hostname, () => {
+server.listen(port, hostname, () => {
     console.log(`Server is started http://${hostname}:${port}/`);
 });
 
 
-module.exports = {runningServer}

@@ -1,43 +1,34 @@
-const { runningServer } = require("./index");
 const http = require("http");
 
-while (runningServer.listening) {}
+const expectedGreeting = `Hello world 'App 1'!`;
 
-const intervalId = setInterval(() => {
-  if (runningServer.listening) {
-    const expectedGreeting = `Hello world 'App 1'!`;
+var options = {
+  host: "localhost",
+  path: "/",
+  port: process.env.PORT,
+  method: "GET",
+};
 
-    var options = {
-      host: "localhost",
-      path: "/",
-      port: process.env.PORT,
-      method: "GET",
-    };
+callback = function (response) {
+  var str = "";
 
-    callback = function (response) {
-      var str = "";
+  //another chunk of data has been received, so append it to `str`
+  response.on("data", function (chunk) {
+    str += chunk;
+  });
 
-      //another chunk of data has been received, so append it to `str`
-      response.on("data", function (chunk) {
-        str += chunk;
-      });
-
-      //the whole response has been received, so we just print it out here
-      response.on("end", function () {
-        if (str === expectedGreeting) {
-          console.log(str);
-        } else {
-          throw new Error(`It must be: ${expectedGreeting} instead of ${str}`);
-        }
-      });
-    };
-
-    try {
-      http.get(options, callback).end();
-    } catch (e) {
-      throw new Error(`Can't make a request!`);
+  //the whole response has been received, so we just print it out here
+  response.on("end", function () {
+    if (str === expectedGreeting) {
+      console.log(str);
+    } else {
+      throw new Error(`It must be: ${expectedGreeting} instead of ${str}`);
     }
+  });
+};
 
-    clearInterval(intervalId);
-  }
-}, 100);
+try {
+  http.get(options, callback).end();
+} catch (e) {
+  throw new Error(`Can't make a request!`);
+}
