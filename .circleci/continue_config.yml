@@ -25,9 +25,9 @@ jobs:
       - add_ssh_keys:
           fingerprints:
             - "68:57:52:54:24:68:1c:45:ce:95:57:f3:ef:de:23:9a"
-      # - run:
-      #     name: Clone
-      #     command: /stages/01_clone.sh
+      - run:
+          name: Clone
+          command: /stages/01_clone.sh
       # - run:
       #     name: Build
       #     command: /stages/02_build.sh
@@ -59,9 +59,9 @@ jobs:
       - add_ssh_keys:
           fingerprints:
             - "68:57:52:54:24:68:1c:45:ce:95:57:f3:ef:de:23:9a"
-      # - run:
-      #     name: Clone
-      #     command: /stages/01_clone.sh
+      - run:
+          name: Clone
+          command: /stages/01_clone.sh
       # - run:
       #     name: Build
       #     command: /stages/02_build.sh
