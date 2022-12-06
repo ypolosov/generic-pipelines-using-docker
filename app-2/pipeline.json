@@ -19,7 +19,7 @@
     "tagName": "2.2.0"
   },
   "deploy": {
-    "host": "51.250.75.136",
+    "host": "158.160.35.35",
     "user": "ypolosov",
     "port": "22"
   }
