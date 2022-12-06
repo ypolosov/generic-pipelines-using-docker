@@ -22,7 +22,6 @@ jobs:
     steps:
       - setup_remote_docker:
           docker_layer_caching: true
-      # IMPORTANT !!! https://circleci.com/docs/github-integration/#establish-the-authenticity-of-an-ssh-host
       - add_ssh_keys:
           fingerprints:
             - "68:57:52:54:24:68:1c:45:ce:95:57:f3:ef:de:23:9a"
@@ -40,13 +39,12 @@ jobs:
       #     command: |
       #       export DOCKER_PASSWORD="$DOCKER_PASSWORD"
       #       /stages/04_archive.sh
-      # - run:
-      #     name: Deploy
-      #     command: /stages/05_deploy.sh
-      - checkout
       - run:
-          name: Test
-          command: /stages/test.sh
+          name: Deploy
+          command: /stages/05_deploy.sh
+      # - run:
+      #     name: Test
+      #     command: /stages/test.sh
   app-2-workflow:
     docker:
       - image: ypolosov/agnostic-pipeline
@@ -58,7 +56,6 @@ jobs:
     steps:
       - setup_remote_docker:
           docker_layer_caching: true
-      # IMPORTANT !!! https://circleci.com/docs/github-integration/#establish-the-authenticity-of-an-ssh-host
       - add_ssh_keys:
           fingerprints:
             - "68:57:52:54:24:68:1c:45:ce:95:57:f3:ef:de:23:9a"
@@ -76,13 +73,12 @@ jobs:
       #     command: |
       #       export DOCKER_PASSWORD="$DOCKER_PASSWORD"
       #       /stages/04_archive.sh
-      # - run:
-      #     name: Deploy
-      #     command: /stages/05_deploy.sh
-      - checkout
       - run:
-          name: Test
-          command: /stages/test.sh
+          name: Deploy
+          command: /stages/05_deploy.sh
+      # - run:
+      #     name: Test
+      #     command: /stages/test.sh
 
 # here we specify our workflows, most of which are conditionally
 # executed based upon pipeline parameter values. Each workflow calls a
