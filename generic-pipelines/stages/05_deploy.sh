@@ -24,7 +24,7 @@ set -x
 # IMPORTANT !!! https://circleci.com/docs/github-integration/#establish-the-authenticity-of-an-ssh-host
 ssh-keyscan -p "${deployPort}" "${deployHost}" >> ~/.ssh/known_hosts
 # ssh -o StrictHostKeyChecking=no -p ${deployPort} ${deployUser}@${deployHost}
-docker -H "ssh://${deployUser}@${deployHost}:${deployPort}" run --rm -d -p "${port}:${port}" -e "PORT=${port}" -e "APP_NAME=${appName}" "${image}"
+docker -H "ssh://${deployUser}@${deployHost}:${deployPort}" run --rm -d --net host -e "PORT=${port}" -e "APP_NAME=${appName}" "${image}"
 
 
 popd
