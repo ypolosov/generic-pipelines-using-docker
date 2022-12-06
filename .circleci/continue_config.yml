@@ -43,7 +43,7 @@ jobs:
           name: Deploy
           command: /stages/05_deploy.sh
       # - run:
-      #     name: Test
+      #     name: Ssh test
       #     command: /stages/ssh_test.sh
   app-2-workflow:
     docker:
@@ -77,7 +77,7 @@ jobs:
           name: Deploy
           command: /stages/05_deploy.sh
       # - run:
-      #     name: Test
+      #     name: Ssh test
       #     command: /stages/ssh_test.sh
 
 # here we specify our workflows, most of which are conditionally

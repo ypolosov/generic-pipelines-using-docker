@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 set -e
 
-PROJECT_DIR=app-1
+PROJECT_DIR=app-2
 
 docker run \
     --env PROJECT_DIR="${PROJECT_DIR}" \
