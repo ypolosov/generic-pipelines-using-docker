@@ -31,9 +31,9 @@ jobs:
       - run:
           name: Build
           command: /stages/02_build.sh
-      - run:
-          name: Test
-          command: /stages/03_test.sh
+      # - run:
+      #     name: Test
+      #     command: /stages/03_test.sh
       - run:
           name: Archive
           command: |
@@ -65,9 +65,9 @@ jobs:
       - run:
           name: Build
           command: /stages/02_build.sh
-      - run:
-          name: Test
-          command: /stages/03_test.sh
+      # - run:
+      #     name: Test
+      #     command: /stages/03_test.sh
       - run:
           name: Archive
           command: |
