@@ -11,6 +11,8 @@ port=$(jq -r .application.port pipeline.json)
 appName=$(jq -r .application.name pipeline.json)
 testPath=$(jq -r .test.path pipeline.json)
 
+popd
+
 case "${appType}" in
   "java")
     mvn test
@@ -32,4 +34,3 @@ case "${appType}" in
     ;;
 esac
 
-popd

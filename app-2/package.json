@@ -1,9 +1,0 @@
-{
-  "name": "app-2",
-  "version": "2.2.0",
-  "description": "",
-  "scripts": {
-    "start": "node index.js",
-    "test": "node index.spec.js"
-  }
-}

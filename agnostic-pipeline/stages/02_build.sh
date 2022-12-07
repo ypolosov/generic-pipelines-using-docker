@@ -6,9 +6,9 @@ echo "Building Application"
 
 pushd "$PROJECT_DIR"
 
-
 appType=$(jq -r .application.type pipeline.json)
 
+popd
 
 case "${appType}" in
   "java")
@@ -19,7 +19,7 @@ case "${appType}" in
     dotnet build -c Release
     ;;
   "node")
-    npm ci
+    npm build
     ;;
   *)
     echo "Unable to build application type ${appType}"
@@ -28,4 +28,4 @@ case "${appType}" in
 esac
 
 
-popd
+

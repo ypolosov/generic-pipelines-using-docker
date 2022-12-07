@@ -19,6 +19,9 @@ image="${registry}/${account}/${appName}:${tagName}"
 deployUser=$(jq -r .deploy.user pipeline.json)
 deployHost=$(jq -r .deploy.host pipeline.json)
 deployPort=$(jq -r .deploy.port pipeline.json)
+
+popd
+
 set -x
 
 # IMPORTANT !!! https://circleci.com/docs/github-integration/#establish-the-authenticity-of-an-ssh-host
@@ -27,4 +30,3 @@ ssh-keyscan -p "${deployPort}" "${deployHost}" >> ~/.ssh/known_hosts
 docker -H "ssh://${deployUser}@${deployHost}:${deployPort}" run --rm -d --net host -e "PORT=${port}" -e "APP_NAME=${appName}" "${image}"
 
 
-popd

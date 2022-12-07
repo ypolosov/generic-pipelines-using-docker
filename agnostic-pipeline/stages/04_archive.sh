@@ -12,6 +12,8 @@ appName=$(jq -r .archive.appName pipeline.json)
 tagName=$(jq -r .archive.tagName pipeline.json)
 image="${registry}/${account}/${appName}:${tagName}"
 
+popd
+
 if [[ ! -z "${DOCKER_PASSWORD}" ]]
 then
     # cloud running
@@ -20,7 +22,6 @@ else
     # local running
     docker login
 fi
-docker build -t "${image}" .
+docker build -t "${image}" -f "${appName}/Dockerfile.prod"
 docker push "${image}"
 
-popd

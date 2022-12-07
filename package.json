@@ -3,5 +3,8 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
+    "build": "Build step is running...",
+    "start": "",
+    "test": "Test step is running..."
   }
 }
