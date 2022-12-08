@@ -4,7 +4,9 @@ set -e
 echo
 echo "Testing Application"
 
-source "$PROJECT_DIR/.env"
+CONFIG_PATH="$PROJECT_DIR/.env"
+cat "${CONFIG_PATH}"
+source "${CONFIG_PATH}"
 
 npm run test
 
