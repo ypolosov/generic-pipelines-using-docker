@@ -20,6 +20,6 @@ else
     # local running
     docker login
 fi
-docker build -t "${IMAGE}" -f "${ARCHIVE_APP_NAME}/Dockerfile.prod"
+docker build -t "${IMAGE}" -f "${ARCHIVE_APP_NAME}/Dockerfile.prod" "./${ARCHIVE_APP_NAME}"
 docker push "${IMAGE}"
 
