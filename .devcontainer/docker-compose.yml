@@ -11,8 +11,8 @@ services:
       - ${PORT}:${PORT}
     tty: true
     volumes:
-      - /app:../${APP_NAME}/src
-    command: node /app/index.js 
+      - ../${APP_NAME}/src:/app
+    command: ls -la && node /app/index.js 
   app-2:
     build: 
       context: ../${APP_NAME}
@@ -23,5 +23,5 @@ services:
       - ${PORT}:${PORT}
     tty: true
     volumes:
-      - /app:../${APP_NAME}/src
-    command: node /app/index.js  
+      - ../${APP_NAME}/src:/app
+    command: ls -la && node /app/index.js  
