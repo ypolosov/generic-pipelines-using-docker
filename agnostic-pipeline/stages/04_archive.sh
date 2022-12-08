@@ -6,7 +6,7 @@ echo "Archiving Application"
 
 source "$PROJECT_DIR/.env"
 
-IMAGE="${ARCHIVE_REGISTRY}/${ARCHIVE_ACCOUNT}/${ARCHIVE_APP-NAME}:${ARCHIVE_TAG-NAME}"
+IMAGE="${ARCHIVE_REGISTRY}/${ARCHIVE_ACCOUNT}/${ARCHIVE_APP_NAME}:${ARCHIVE_TAG_NAME}"
 
 if [[ ! -z "${DOCKER_PASSWORD}" ]]
 then
@@ -16,6 +16,6 @@ else
     # local running
     docker login
 fi
-docker build -t "${IMAGE}" -f "${ARCHIVE_APP-NAME}/Dockerfile.prod"
+docker build -t "${IMAGE}" -f "${ARCHIVE_APP_NAME}/Dockerfile.prod"
 docker push "${IMAGE}"
 
