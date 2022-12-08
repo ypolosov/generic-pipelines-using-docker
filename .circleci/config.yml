@@ -6,7 +6,6 @@ jobs:
     working_directory: /app
     resource_class: small
     steps:
-      - checkout
       - setup_remote_docker:
           docker_layer_caching: true
       - add_ssh_keys:
