@@ -14,7 +14,7 @@ jobs:
       - run:
           name: Clone
           command: |
-            git clone https://github.com/ypolosov/generic-pipelines-using-docker.git
+            git clone https://github.com/ypolosov/generic-pipelines-using-docker.git .
       - run:
           name: Pipeline
           command: |
