@@ -12,7 +12,7 @@ services:
     tty: true
     volumes:
       - /app:../${APP_NAME}/src
-    command: node /app/${APP_NAME}/src/index.js 
+    command: node /app/index.js 
   app-2:
     build: 
       context: ../${APP_NAME}
@@ -24,4 +24,4 @@ services:
     tty: true
     volumes:
       - /app:../${APP_NAME}/src
-    command: node /app/${APP_NAME}/src/index.js  
+    command: node /app/index.js  
