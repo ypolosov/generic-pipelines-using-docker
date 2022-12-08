@@ -2,7 +2,7 @@ version: 2.1
 jobs:
   pipeline-job:
     docker:
-      - image: docker
+      - image: docker:git
     working_directory: /app
     resource_class: small
     steps:
