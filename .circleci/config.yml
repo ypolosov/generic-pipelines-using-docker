@@ -1,6 +1,6 @@
 version: 2.1
 jobs:
-  pipeline-workflow:
+  pipeline-job:
     docker:
       - image: docker/compose
     working_directory: /app
@@ -18,3 +18,7 @@ jobs:
             pwd
             ls -la
             docker compose -f .devcontainer/docker-compose.yml --env-file app-2/.env run --rm app-2
+workflows:
+  pipeline-workflow:
+    jobs:
+      - pipeline-job
