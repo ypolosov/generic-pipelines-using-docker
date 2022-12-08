@@ -3,6 +3,8 @@ jobs:
   pipeline-job:
     docker:
       - image: node:lts
+    environment:
+      PROJECT_DIR: app-1
     working_directory: /app
     resource_class: small
     steps:
@@ -13,6 +15,10 @@ jobs:
           fingerprints:
             - "68:57:52:54:24:68:1c:45:ce:95:57:f3:ef:de:23:9a"
       - run:
+          name: Ci
+          command: |
+            npm ci
+      - run:
           name: Build
           command: |
             npm run build
@@ -20,10 +26,6 @@ jobs:
           name: Test
           command: |
             npm run test
-      - run:
-          name: Start
-          command: |
-            npm run start
       - run:
           name: Archive
           command: |

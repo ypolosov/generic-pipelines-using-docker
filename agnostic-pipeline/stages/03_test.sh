@@ -10,6 +10,4 @@ CONFIG_PATH="$PROJECT_DIR/.env"
 cat "${CONFIG_PATH}"
 source "${CONFIG_PATH}"
 
-npm run test
-
-
+node "$PROJECT_DIR/index.spec.js"

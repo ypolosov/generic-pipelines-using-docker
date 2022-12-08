@@ -3,10 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "build": "echo Build step is running...",
-    "start": "echo Start step is running...",
-    "test": "echo Test step is running...",
-    "archive": "echo Archive step is running...",
-    "deploy": "echo Deploy step is running..."
+    "build": "./agnostic-pipeline/stages/02_build.sh",
+    "test": "./agnostic-pipeline/stages/03_test.sh",
+    "archive": "./agnostic-pipeline/stages/04_archive.sh",
+    "deploy": "./agnostic-pipeline/stages/05_deploy.sh"
   }
 }

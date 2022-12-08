@@ -1,1 +1,1 @@
-console.log("Here will be test!");
+console.log("Here will be app-1 test!");
