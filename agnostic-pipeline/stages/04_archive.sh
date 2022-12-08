@@ -4,24 +4,18 @@ set -e
 echo
 echo "Archiving Application"
 
-pushd "$PROJECT_DIR"
+source "$PROJECT_DIR/.env"
 
-registry=$(jq -r .archive.registry pipeline.json)
-account=$(jq -r .archive.account pipeline.json)
-appName=$(jq -r .archive.appName pipeline.json)
-tagName=$(jq -r .archive.tagName pipeline.json)
-image="${registry}/${account}/${appName}:${tagName}"
-
-popd
+IMAGE="${ARCHIVE_REGISTRY}/${ARCHIVE_ACCOUNT}/${ARCHIVE_APP-NAME}:${ARCHIVE_TAG-NAME}"
 
 if [[ ! -z "${DOCKER_PASSWORD}" ]]
 then
     # cloud running
-    echo "${DOCKER_PASSWORD?:}" | docker login -u "${account?:}" --password-stdin "${registry}"
+    echo "${DOCKER_PASSWORD?:}" | docker login -u "${ARCHIVE_ACCOUNT?:}" --password-stdin "${ARCHIVE_REGISTRY}"
 else
     # local running
     docker login
 fi
-docker build -t "${image}" -f "${appName}/Dockerfile.prod"
-docker push "${image}"
+docker build -t "${IMAGE}" -f "${ARCHIVE_APP-NAME}/Dockerfile.prod"
+docker push "${IMAGE}"
 

@@ -4,11 +4,7 @@ set -e
 echo
 echo "Building Application"
 
-pushd "$PROJECT_DIR"
-
-source '.env' 
-
-popd
+source "$PROJECT_DIR/.env"
 
 npm run build
 
