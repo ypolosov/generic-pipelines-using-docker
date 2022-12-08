@@ -5,6 +5,8 @@
   "scripts": {
     "build": "echo Build step is running...",
     "start": "echo Start step is running...",
-    "test": "echo Test step is running..."
+    "test": "echo Test step is running...",
+    "archive": "echo Archive step is running...",
+    "deploy": "echo Deploy step is running..."
   }
 }

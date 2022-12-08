@@ -2,26 +2,36 @@ version: 2.1
 jobs:
   pipeline-job:
     docker:
-      - image: docker:git
+      - image: docker
     working_directory: /app
     resource_class: small
     steps:
+      - checkout
       - setup_remote_docker:
           docker_layer_caching: true
       - add_ssh_keys:
           fingerprints:
             - "68:57:52:54:24:68:1c:45:ce:95:57:f3:ef:de:23:9a"
       - run:
-          name: Clone
+          name: Build
           command: |
-            git clone https://github.com/ypolosov/generic-pipelines-using-docker.git .
+            npm run build
       - run:
-          name: Pipeline
+          name: Test
           command: |
-            pwd
-            ls -la
-            docker -v
-            docker compose -f .devcontainer/docker-compose.yml --env-file app-2/.env run app-2
+            npm run test
+      - run:
+          name: Start
+          command: |
+            npm run start
+      - run:
+          name: Archive
+          command: |
+            npm run archive
+      - run:
+          name: Deploy
+          command: |
+            npm run deploy
 workflows:
   pipeline-workflow:
     jobs:
