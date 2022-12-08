@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "build": "Build step is running...",
-    "start": "",
-    "test": "Test step is running..."
+    "build": "echo Build step is running...",
+    "start": "echo Start step is running...",
+    "test": "echo Test step is running..."
   }
 }
