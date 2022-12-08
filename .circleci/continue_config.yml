@@ -11,6 +11,29 @@ parameters:
     default: false
 
 jobs:
+  prepare-ci-cd:
+    docker:
+      - image: docker
+    environment:
+      PROJECT_DIR: agnostic-pipeline
+      REPOSITORY_URL: https://github.com/ypolosov/generic-pipelines-using-docker.git
+    working_directory: /app
+    resource_class: small
+    steps:
+      - setup_remote_docker:
+          docker_layer_caching: true
+      - add_ssh_keys:
+          fingerprints:
+            - "68:57:52:54:24:68:1c:45:ce:95:57:f3:ef:de:23:9a"
+      - run:
+          name: Clone
+          command: /stages/01_clone.sh
+      - run:
+          name: Pipeline
+          command: /stages/pipeline.sh
+      # - run:
+      #     name: Ssh test
+      #     command: /stages/ssh_test.sh
   app-1-workflow:
     docker:
       - image: ypolosov/agnostic-pipeline
@@ -89,6 +112,7 @@ workflows:
   app-1:
     when: << pipeline.parameters.run-build-app-1-job >>
     jobs:
+      - prepare-ci-cd
       - app-1-workflow
 
   # when pipeline parameter, run-build-service-2-job is true, the
@@ -96,4 +120,5 @@ workflows:
   app-2:
     when: << pipeline.parameters.run-build-app-2-job >>
     jobs:
+      - prepare-ci-cd
       - app-2-workflow
