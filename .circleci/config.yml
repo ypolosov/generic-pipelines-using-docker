@@ -12,8 +12,6 @@ jobs:
       - add_ssh_keys:
           fingerprints:
             - "68:57:52:54:24:68:1c:45:ce:95:57:f3:ef:de:23:9a"
-      - run: |
-
       - run:
           name: Pipeline
           command: |
@@ -26,7 +24,7 @@ jobs:
             # copy a config file into this volume
             docker cp ./app-2/ configs:/app
             # start an application container using this volume
-            docker compose -f .devcontainer/docker-compose.yml --env-file app-2/.env run --rm --volume configs app-2
+            docker compose -f .devcontainer/docker-compose.yml --env-file app-2/.env run --volume configs app-2
 workflows:
   pipeline-workflow:
     jobs:
