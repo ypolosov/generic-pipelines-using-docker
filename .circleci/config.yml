@@ -18,7 +18,6 @@ jobs:
             pwd
             ls -la
             docker -v
-            docker cp ./app-2/ app-2:/app
             # create a dummy container which will hold a volume with config
             docker create -v /app --name configs alpine:3.4 /bin/true
             # copy a config file into this volume
