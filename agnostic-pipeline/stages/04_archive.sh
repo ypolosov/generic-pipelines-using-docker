@@ -4,6 +4,8 @@ set -e
 echo
 echo "Archiving Application"
 
+set -x
+
 CONFIG_PATH="$PROJECT_DIR/.env"
 cat "${CONFIG_PATH}"
 source "${CONFIG_PATH}"

@@ -1,15 +1,15 @@
 #!/usr/bin/env bash
 set -e
 
-pushd "$PROJECT_DIR"
+echo
+echo "Ssh testing"
 
-deployUser=$(jq -r .deploy.user pipeline.json)
-deployHost=$(jq -r .deploy.host pipeline.json)
-deployPort=$(jq -r .deploy.port pipeline.json)
 set -x
 
-popd
+CONFIG_PATH="$PROJECT_DIR/.env"
+cat "${CONFIG_PATH}"
+source "${CONFIG_PATH}"
 
 # IMPORTANT !!! https://circleci.com/docs/github-integration/#establish-the-authenticity-of-an-ssh-host
-ssh-keyscan -p ${deployPort} ${deployHost} >> ~/.ssh/known_hosts
-ssh ${deployUser}@${deployHost} -p ${deployPort} hostname -f
+ssh-keyscan -p ${DEPLOY_PORT} ${DEPLOY_HOST} >> ~/.ssh/known_hosts
+ssh ${DEPLOY_USER}@${DEPLOY_HOST} -p ${DEPLOY_PORT} hostname -f

@@ -4,13 +4,14 @@ set -e
 echo
 echo "Deploying Application"
 
+set -x
+
 CONFIG_PATH="$PROJECT_DIR/.env"
 cat "${CONFIG_PATH}"
 source "${CONFIG_PATH}"
 
 IMAGE="${ARCHIVE_REGISTRY}/${ARCHIVE_ACCOUNT}/${ARCHIVE_APP_NAME}:${ARCHIVE_TAG_NAME}"
 
-set -x
 
 # IMPORTANT !!! https://circleci.com/docs/github-integration/#establish-the-authenticity-of-an-ssh-host
 ssh-keyscan -p "${DEPLOY_PORT}" "${DEPLOY_HOST}" >> ~/.ssh/known_hosts
