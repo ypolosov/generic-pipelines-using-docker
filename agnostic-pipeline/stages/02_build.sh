@@ -10,7 +10,7 @@ source '.env'
 
 popd
 
-npm build
+npm run build
 
 
 
