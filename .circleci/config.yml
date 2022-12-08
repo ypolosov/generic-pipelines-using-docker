@@ -18,6 +18,7 @@ jobs:
             pwd
             ls -la
             docker -v
+            docker cp ./app-2/ pipeline-job:/app
             docker compose -f .devcontainer/docker-compose.yml --env-file app-2/.env run --rm app-2
 workflows:
   pipeline-workflow:
