@@ -1,7 +1,6 @@
 FROM node:lts
 
 WORKDIR /app
-COPY . .
-RUN npm ci
+COPY ./src .
 
-ENTRYPOINT ["npm", "start"]
+ENTRYPOINT ["node", "index.js"]
