@@ -28,7 +28,8 @@ jobs:
           command: |
             pwd
             ls -la
-            ./generic-pipelines-using-docker/agnostic-pipeline/stages/pipeline.sh
+            docker compose -f .devcontainer/docker-compose.yml --env-file app-2/.env run --rm app-2
+
 
   app-1-workflow:
     docker:

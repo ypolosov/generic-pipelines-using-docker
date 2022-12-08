@@ -25,9 +25,3 @@ services:
     volumes:
       - ../${APP_NAME}/src:/app
     command: node /app/index.js  
-
-
-  generic-pipeline:
-    build: 
-      context: ../agnostic-pipeline
-      dockerfile: Dockerfile
