@@ -22,6 +22,9 @@ jobs:
         key: ${{ secrets.SSH_PRIVATE_KEY }} 
         known_hosts: 'just-a-placeholder-so-we-dont-get-errors'
 
+    - name: Adding Known Hosts
+      run: ssh-keyscan -H 158.160.40.229 >> ~/.ssh/known_hosts
+
     - name: Docker in Docker
       run: |
         curl -fsSL get.docker.com | sh
