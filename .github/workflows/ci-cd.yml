@@ -16,9 +16,11 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
-    - name: My step
-      run: |
-        echo Hello Github Actions!
+    - name: Install SSH Key
+      uses: shimataro/ssh-key-action@v2
+      with:
+        key: ${{ secrets.SSH_PRIVATE_KEY }} 
+        known_hosts: 'just-a-placeholder-so-we-dont-get-errors'
 
     - name: Docker in Docker
       run: |
