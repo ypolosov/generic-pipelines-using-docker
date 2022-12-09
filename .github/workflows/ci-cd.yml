@@ -61,6 +61,7 @@ jobs:
           ssh-keyscan 158.160.40.229 >> ~/.ssh/known_hosts
           ssh ypolosov@158.160.40.229 hostname -f
 
+
     # - name: Deploy
     #   run: |
     #     mkdir -p ~/.ssh && touch ~/.ssh/known_hosts
