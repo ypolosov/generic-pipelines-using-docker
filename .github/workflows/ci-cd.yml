@@ -42,4 +42,5 @@ jobs:
         mkdir -p ~/.ssh && touch ~/.ssh/known_hosts
         chmod 700 ~/.ssh
         chmod 644 ~/.ssh/known_hosts
+        echo "${{secrets.SSH_PRIVATE_KEY}}" > ~/.ssh/id_ed25519_agnostic_pipeline
         ./agnostic-pipeline/stages/05_deploy.sh
