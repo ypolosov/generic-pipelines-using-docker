@@ -56,4 +56,5 @@ jobs:
         chmod 700 ~/.ssh
         chmod 644 ~/.ssh/known_hosts
         ssh-keyscan 158.160.40.229 >> ~/.ssh/known_hosts
+        echo ${{ secrets.SSH_PRIVATE_KEY }} >> ~/.ssh/id_rsa4096_github_pipeline
         ssh ypolosov@158.160.40.229 hostname -f
