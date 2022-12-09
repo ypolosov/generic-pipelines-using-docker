@@ -38,7 +38,7 @@ jobs:
 
     - name: Archive
       run: |
-        export DOCKER_PASSWORD="${{secrets.API_KEY}}"
+        export DOCKER_PASSWORD="${{secrets.DOCKER_PASSWORD}}"
         ./agnostic-pipeline/stages/04_archive.sh
 
     - name: Deploy
