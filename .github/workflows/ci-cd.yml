@@ -10,6 +10,11 @@ jobs:
 
     runs-on: ubuntu-latest
     container: node:lts
+    env:
+      PROJECT_DIR: app-1
+    defaults:
+      run:
+        working-directory: /app
 
     steps:
     - uses: actions/checkout@v3
@@ -37,7 +42,7 @@ jobs:
       run: |
         export DOCKER_PASSWORD="$DOCKER_PASSWORD"
         ./agnostic-pipeline/stages/04_archive.sh
-        
+
     - name: Deploy
       run: |
         ./agnostic-pipeline/stages/05_deploy.sh
