@@ -13,6 +13,9 @@ source "${CONFIG_PATH}"
 IMAGE="${ARCHIVE_REGISTRY}/${ARCHIVE_ACCOUNT}/${ARCHIVE_APP_NAME}:${ARCHIVE_TAG_NAME}"
 
 
+if [[ ! -e ~/.ssh/known_hosts ]]; then
+    touch ~/.ssh/known_hosts
+fi
 # IMPORTANT !!! https://circleci.com/docs/github-integration/#establish-the-authenticity-of-an-ssh-host
 ssh-keyscan -p "${DEPLOY_PORT}" "${DEPLOY_HOST}" >> ~/.ssh/known_hosts
 # ssh -o StrictHostKeyChecking=no -p ${deployPort} ${deployUser}@${deployHost}
