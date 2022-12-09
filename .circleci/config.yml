@@ -17,15 +17,15 @@ jobs:
       - run:
           name: Ci
           command: |
-            npm ci
+            ./agnostic-pipeline/stages/01_ci.sh
       - run:
           name: Build
           command: |
-            npm run build
+            ./agnostic-pipeline/stages/02_build.sh
       - run:
           name: Test
           command: |
-            npm run test
+            ./agnostic-pipeline/stages/03_test.sh
   deploy-job:
     docker:
       - image: docker
@@ -38,11 +38,11 @@ jobs:
           name: Archive
           command: |
             export DOCKER_PASSWORD="$DOCKER_PASSWORD"
-            npm run archive
+            ./agnostic-pipeline/stages/04_archive.sh
       - run:
           name: Deploy
           command: |
-            npm run deploy
+            ./agnostic-pipeline/stages/05_deploy.sh
 workflows:
   pipeline-workflow:
     jobs:

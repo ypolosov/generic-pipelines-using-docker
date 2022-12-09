@@ -3,9 +3,6 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "build": "./agnostic-pipeline/stages/02_build.sh",
-    "test": "./agnostic-pipeline/stages/03_test.sh",
-    "archive": "./agnostic-pipeline/stages/04_archive.sh",
-    "deploy": "./agnostic-pipeline/stages/05_deploy.sh"
+
   }
 }
