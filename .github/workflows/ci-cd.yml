@@ -6,7 +6,7 @@ on:
 
 jobs:
 
-  build:
+  pipeline-job:
 
     runs-on: ubuntu-latest
     container: node:lts
@@ -16,3 +16,28 @@ jobs:
     - name: My step
       run: |
         echo Hello Github Actions!
+
+    - name: Docker in Docker
+      run: |
+        curl -fsSL get.docker.com | sh
+
+    - name: Ci
+      run: |
+        ./agnostic-pipeline/stages/01_ci.sh
+
+    - name: Build
+      run: |
+        ./agnostic-pipeline/stages/02_build.sh
+
+    - name: Test
+      run: |
+        ./agnostic-pipeline/stages/03_test.sh
+
+    - name: Archive
+      run: |
+        export DOCKER_PASSWORD="$DOCKER_PASSWORD"
+        ./agnostic-pipeline/stages/04_archive.sh
+        
+    - name: Deploy
+      run: |
+        ./agnostic-pipeline/stages/05_deploy.sh
