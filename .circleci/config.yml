@@ -1,6 +1,9 @@
 version: 2.1
 jobs:
   pipeline-job:
+    machine:
+      - image: docker:git
+      - docker_layer_caching: true
     docker:
       - image: node:lts
     environment:
@@ -26,14 +29,6 @@ jobs:
           name: Test
           command: |
             ./agnostic-pipeline/stages/03_test.sh
-  deploy-job:
-    docker:
-      - image: docker
-    environment:
-      PROJECT_DIR: app-1
-    working_directory: /app
-    resource_class: small
-    steps:
       - run:
           name: Archive
           command: |
@@ -47,4 +42,3 @@ workflows:
   pipeline-workflow:
     jobs:
       - pipeline-job
-      - deploy-job
