@@ -26,6 +26,14 @@ jobs:
           name: Test
           command: |
             npm run test
+  deploy-job:
+    docker:
+      - image: docker
+    environment:
+      PROJECT_DIR: app-1
+    working_directory: /app
+    resource_class: small
+    steps:
       - run:
           name: Archive
           command: |
@@ -39,3 +47,4 @@ workflows:
   pipeline-workflow:
     jobs:
       - pipeline-job
+      - deploy-job
