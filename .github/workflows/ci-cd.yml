@@ -4,6 +4,10 @@ on:
   push:
     branches: [ "master" ]
 
+defaults:
+  run:
+    working-directory: /app
+    
 jobs:
 
   pipeline-job:
@@ -12,9 +16,6 @@ jobs:
     container: node:lts
     env:
       PROJECT_DIR: app-1
-    defaults:
-      run:
-        working-directory: /app
 
     steps:
     - uses: actions/checkout@v3
