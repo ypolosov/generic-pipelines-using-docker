@@ -14,7 +14,7 @@ IMAGE="${ARCHIVE_REGISTRY}/${ARCHIVE_ACCOUNT}/${ARCHIVE_APP_NAME}:${ARCHIVE_TAG_
 
 
 if [[ ! -e ~/.ssh/known_hosts ]]; then
-    touch ~/.ssh/known_hosts
+    mkdir -p ~/.ssh && touch ~/.ssh/known_hosts
 fi
 # IMPORTANT !!! https://circleci.com/docs/github-integration/#establish-the-authenticity-of-an-ssh-host
 ssh-keyscan -p "${DEPLOY_PORT}" "${DEPLOY_HOST}" >> ~/.ssh/known_hosts
