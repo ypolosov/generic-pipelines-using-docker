@@ -16,19 +16,6 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
-    - name: Install SSH Key
-      uses: shimataro/ssh-key-action@v2
-      with:
-        key: ${{ secrets.SSH_PRIVATE_KEY }} 
-        known_hosts: 'just-a-placeholder-so-we-dont-get-errors'
-
-    - name: Adding Known Hosts
-      run: |
-        mkdir -p ~/.ssh && touch ~/.ssh/known_hosts
-        chmod 700 ~/.ssh
-        chmod 644 ~/.ssh/known_hosts
-        ssh-keyscan -H 158.160.40.229 >> ~/.ssh/known_hosts
-
     - name: Docker in Docker
       run: |
         curl -fsSL get.docker.com | sh
@@ -52,4 +39,8 @@ jobs:
 
     - name: Deploy
       run: |
+        mkdir -p ~/.ssh && touch ~/.ssh/known_hosts
+        chmod 700 ~/.ssh
+        chmod 644 ~/.ssh/known_hosts
+        echo "${{secrets.SSH_PRIVATE_KEY}}" > ~/.ssh/known_hosts
         ./agnostic-pipeline/stages/05_deploy.sh
