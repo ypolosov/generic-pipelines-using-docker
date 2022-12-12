@@ -62,11 +62,11 @@ jobs:
     #       ssh ypolosov@158.160.40.229 hostname -f
 
 
-    - name: s1
-      run: |
-        cat ${{ secrets.agnostic-pipeline }} | ssh ypolosov@158.160.44.177 "mkdir -p ~/.ssh && touch ~/.ssh/authorized_keys && chmod -R go= ~/.ssh && cat >> ~/.ssh/authorized_keys"
-        ls -la ~/.ssh
-        cat ~/.ssh/authorized_keys
+    # - name: s1
+    #   run: |
+    #     cat ${{ secrets.agnostic-pipeline }} | ssh ypolosov@158.160.44.177 "mkdir -p ~/.ssh && touch ~/.ssh/authorized_keys && chmod -R go= ~/.ssh && cat >> ~/.ssh/authorized_keys"
+    #     ls -la ~/.ssh
+    #     cat ~/.ssh/authorized_keys
     - name: s2
       run: |
         touch ~/.ssh/known_hosts
