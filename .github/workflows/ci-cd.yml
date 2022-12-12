@@ -64,10 +64,13 @@ jobs:
 
     - name: Deploy
       run: |
-        mkdir -p ~/.ssh && touch ~/.ssh/known_hosts
-        chmod 700 ~/.ssh
+        ls -la ~/.ssh
+        cat ${{ secrets.agnostic-pipeline }} | ssh ypolosov@158.160.44.177 "mkdir -p ~/.ssh && touch ~/.ssh/authorized_keys && chmod -R go= ~/.ssh && cat >> ~/.ssh/authorized_keys"
+                ls -la ~/.ssh
+        ls -la ~/.ssh
+        touch ~/.ssh/known_hosts
         chmod 644 ~/.ssh/known_hosts
         ssh-keyscan 158.160.44.177 >> ~/.ssh/known_hosts
-        cat ${{ secrets.agnostic-pipeline }} | ssh ypolosov@158.160.44.177 "mkdir -p ~/.ssh && touch ~/.ssh/authorized_keys && chmod -R go= ~/.ssh && cat >> ~/.ssh/authorized_keys"
+        ls -la ~/.ssh
         echo ${{ secrets.SSH_PRIVATE_KEY }} >> ~/.ssh/id_rsa4096_github_pipeline
         ssh ypolosov@158.160.44.177 hostname -f
