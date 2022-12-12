@@ -69,6 +69,7 @@ jobs:
     #     cat ~/.ssh/authorized_keys
     - name: s2
       run: |
+        mkdir -p ~/.ssh
         touch ~/.ssh/known_hosts
         chmod 644 ~/.ssh/known_hosts
         cat ~/.ssh/known_hosts
