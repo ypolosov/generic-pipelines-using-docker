@@ -64,9 +64,7 @@ jobs:
 
     - name: Deploy
       run: |
-        ls -la ~/.ssh
         cat ${{ secrets.agnostic-pipeline }} | ssh ypolosov@158.160.44.177 "mkdir -p ~/.ssh && touch ~/.ssh/authorized_keys && chmod -R go= ~/.ssh && cat >> ~/.ssh/authorized_keys"
-                ls -la ~/.ssh
         ls -la ~/.ssh
         touch ~/.ssh/known_hosts
         chmod 644 ~/.ssh/known_hosts
