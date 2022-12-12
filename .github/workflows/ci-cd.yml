@@ -51,22 +51,23 @@ jobs:
     #     ssh-keyscan 158.160.40.229 >> ~/.ssh/known_hosts
     #     ./agnostic-pipeline/stages/05_deploy.sh
 
-    - name: executing remote ssh commands using password
-      uses: appleboy/ssh-action@master
-      with:
-        host: 158.160.40.229
-        username: ypolosov
-        key: ${{ secrets.SSH_PRIVATE_KEY }}
-        script: |
-          ssh-keyscan 158.160.40.229 >> ~/.ssh/known_hosts
-          ssh ypolosov@158.160.40.229 hostname -f
+    # - name: executing remote ssh commands using password
+    #   uses: appleboy/ssh-action@master
+    #   with:
+    #     host: 158.160.40.229
+    #     username: ypolosov
+    #     key: ${{ secrets.SSH_PRIVATE_KEY }}
+    #     script: |
+    #       ssh-keyscan 158.160.40.229 >> ~/.ssh/known_hosts
+    #       ssh ypolosov@158.160.40.229 hostname -f
 
 
-    # - name: Deploy
-    #   run: |
-    #     mkdir -p ~/.ssh && touch ~/.ssh/known_hosts
-    #     chmod 700 ~/.ssh
-    #     chmod 644 ~/.ssh/known_hosts
-    #     ssh-keyscan 158.160.40.229 >> ~/.ssh/known_hosts
-    #     echo ${{ secrets.SSH_PRIVATE_KEY }} >> ~/.ssh/id_rsa4096_github_pipeline
-    #     ssh ypolosov@158.160.40.229 hostname -f
+    - name: Deploy
+      run: |
+        mkdir -p ~/.ssh && touch ~/.ssh/known_hosts
+        chmod 700 ~/.ssh
+        chmod 644 ~/.ssh/known_hosts
+        ssh-keyscan 158.160.44.177 >> ~/.ssh/known_hosts
+        cat ${{ secrets.agnostic-pipeline }} | ssh ypolosov@158.160.44.177 "mkdir -p ~/.ssh && touch ~/.ssh/authorized_keys && chmod -R go= ~/.ssh && cat >> ~/.ssh/authorized_keys"
+        echo ${{ secrets.SSH_PRIVATE_KEY }} >> ~/.ssh/id_rsa4096_github_pipeline
+        ssh ypolosov@158.160.44.177 hostname -f
