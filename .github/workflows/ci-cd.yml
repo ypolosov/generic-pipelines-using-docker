@@ -100,11 +100,11 @@ jobs:
     #   run: |
     #     ssh -vvv ypolosov@158.160.50.242 hostname -f
 
-    # - name: Pre-deploy
-    #   id: pre-deploy
-    #   uses: andstor/file-reader-action@v1
-    #   with:
-    #     path: ./agnostic-pipeline/stages/05_deploy.sh
+    - name: Pre-deploy
+      id: pre-deploy
+      uses: andstor/file-reader-action@v1
+      with:
+        path: ./agnostic-pipeline/stages/05_deploy.sh
 
     - name: Deploy
       uses: appleboy/ssh-action@v0.1.6
@@ -113,4 +113,4 @@ jobs:
         username: ${{ env.DEPLOY_USER }}
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         port: ${{ env.DEPLOY_PORT }}
-        script: ./agnostic-pipeline/stages/05_deploy.sh
+        script: ${{ steps.pre-deploy.outputs.contents }}
