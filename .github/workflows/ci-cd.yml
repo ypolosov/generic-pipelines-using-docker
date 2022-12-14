@@ -80,8 +80,8 @@ jobs:
         cat ~/.ssh/known_hosts
     - name: s3
       run: |
-        ssh-keyscan 158.160.44.177 >> ~/.ssh/known_hosts
+        ssh-keyscan 88.210.12.81 >> ~/.ssh/known_hosts
         cat ~/.ssh/known_hosts
     - name: s4
       run: |
-        ssh ypolosov@158.160.44.177 hostname -f
+        ssh ypolosov@88.210.12.81 hostname -f
