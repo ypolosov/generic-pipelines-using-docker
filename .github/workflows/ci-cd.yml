@@ -88,3 +88,4 @@ jobs:
     - name: s5
       run: |
         ssh ypolosov@88.210.12.81 hostname -f
+
