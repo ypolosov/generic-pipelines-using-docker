@@ -112,5 +112,5 @@ jobs:
         host: ${{ env.DEPLOY_HOST }}
         username: ${{ env.DEPLOY_USER }}
         key: ${{ secrets.SSH_PRIVATE_KEY }}
-        port: ${{ env.DEPLOY_PORT }}
+        port: 22
         script: whoami
