@@ -110,7 +110,7 @@ jobs:
       uses: appleboy/ssh-action@v0.1.6
       with:
         host: ${{ env.DEPLOY_HOST }}
-        username: ${{ env.DEPLOY_USER }}
+        username: ypolosov
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         port: 22
         script: whoami
