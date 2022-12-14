@@ -22,9 +22,9 @@ jobs:
 
     - name: Config
       run: |
-        CONFIG_PATH="$PROJECT_DIR/.env"
-        cat "${CONFIG_PATH}" >> $GITHUB_ENV
-        echo "$GITHUB_ENV"
+        CONFIG_PATH=$PROJECT_DIR/.env
+        cat ${CONFIG_PATH} >> $GITHUB_ENV
+        echo $GITHUB_ENV
 
     - name: Ci
       run: |
@@ -113,4 +113,4 @@ jobs:
         username: ${{ env.DEPLOY_USER }}
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         port: ${{ env.DEPLOY_PORT }}
-        script: hostname -f
+        script: whoami
