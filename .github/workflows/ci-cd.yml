@@ -113,4 +113,5 @@ jobs:
         username: ${{ env.DEPLOY_USER }}
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         port: ${{ env.DEPLOY_PORT }}
+        envs: $PROJECT_DIR
         script: ${{ steps.pre-deploy.outputs.contents }}
