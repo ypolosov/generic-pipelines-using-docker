@@ -22,7 +22,6 @@ jobs:
 
     - name: Config
       run: |
-        ./agnostic-pipeline/stages/config.sh
         CONFIG_PATH="$PROJECT_DIR/.env"
         cat "${CONFIG_PATH}" >> $GITHUB_ENV
         echo "$GITHUB_ENV"
