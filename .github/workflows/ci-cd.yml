@@ -85,5 +85,7 @@ jobs:
       run: |
         ssh-keyscan -H 158.160.50.242 >> ~/.ssh/known_hosts
         cat ~/.ssh/known_hosts
-        ssh ypolosov@158.160.50.242 hostname -f
+    - name: s5
+      run: |
+        ssh -vvv ypolosov@158.160.50.242 hostname -f
 
