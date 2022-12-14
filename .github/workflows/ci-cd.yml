@@ -96,4 +96,4 @@ jobs:
         username: ypolosov
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         port: 22
-        script: whoami
+        script: hostname -f
