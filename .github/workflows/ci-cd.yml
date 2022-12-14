@@ -20,11 +20,11 @@ jobs:
     #   run: |
     #     curl -fsSL get.docker.com | sh
 
-    # - name: Config
-    #   run: |
-    #     CONFIG_PATH=$PROJECT_DIR/.env
-    #     cat ${CONFIG_PATH} >> $GITHUB_ENV
-    #     echo $GITHUB_ENV
+    - name: Config
+      run: |
+        CONFIG_PATH=$PROJECT_DIR/.env
+        cat ${CONFIG_PATH} >> $GITHUB_ENV
+        echo $GITHUB_ENV
 
     # - name: Ci
     #   run: |
@@ -109,8 +109,8 @@ jobs:
     - name: Deploy
       uses: appleboy/ssh-action@v0.1.6
       with:
-        host: 158.160.50.242
-        username: ypolosov
+        host: ${{ env.DEPLOY_HOST }}
+        username: ${{ env.DEPLOY_USER }}
         key: ${{ secrets.SSH_PRIVATE_KEY }}
-        port: 22
+        port: ${{ env.DEPLOY_PORT }}
         script: whoami
