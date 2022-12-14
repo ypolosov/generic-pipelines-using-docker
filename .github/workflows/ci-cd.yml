@@ -16,26 +16,38 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
-    # - name: Docker in Docker
-    #   run: |
-    #     curl -fsSL get.docker.com | sh
+    - name: Docker in Docker
+      run: |
+        curl -fsSL get.docker.com | sh
 
-    # - name: Ci
-    #   run: |
-    #     ./agnostic-pipeline/stages/01_ci.sh
+    - name: Config
+      run: |
+        ./agnostic-pipeline/stages/config.sh
+        CONFIG_PATH="$PROJECT_DIR/.env"
+        cat "${CONFIG_PATH}" >> $GITHUB_ENV
+        echo "$GITHUB_ENV"
 
-    # - name: Build
-    #   run: |
-    #     ./agnostic-pipeline/stages/02_build.sh
+    - name: Ci
+      run: |
+        ./agnostic-pipeline/stages/01_ci.sh
 
-    # - name: Test
-    #   run: |
-    #     ./agnostic-pipeline/stages/03_test.sh
+    - name: Build
+      run: |
+        ./agnostic-pipeline/stages/02_build.sh
 
-    # - name: Archive
-    #   run: |
-    #     export DOCKER_PASSWORD="${{secrets.DOCKER_PASSWORD}}"
-    #     ./agnostic-pipeline/stages/04_archive.sh
+    - name: Test
+      run: |
+        ./agnostic-pipeline/stages/03_test.sh
+
+    - name: Archive
+      run: |
+        export DOCKER_PASSWORD="${{secrets.DOCKER_PASSWORD}}"
+        ./agnostic-pipeline/stages/04_archive.sh
+
+
+
+
+
 
     # - name: Install SSH Key
     #   uses: shimataro/ssh-key-action@v2
@@ -89,11 +101,11 @@ jobs:
     #   run: |
     #     ssh -vvv ypolosov@158.160.50.242 hostname -f
 
-    - name: executing remote ssh commands using password
+    - name: Deploy
       uses: appleboy/ssh-action@v0.1.6
       with:
-        host: 158.160.50.242
-        username: ypolosov
+        host: ${{ env.DEPLOY_HOST }}
+        username: ${{ env.DEPLOY_USER }}
         key: ${{ secrets.SSH_PRIVATE_KEY }}
-        port: 22
-        script: hostname -f
+        port: ${{ env.DEPLOY_PORT }}
+        script: ./agnostic-pipeline/stages/05_deploy.sh
