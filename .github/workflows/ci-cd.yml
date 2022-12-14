@@ -113,5 +113,4 @@ jobs:
         username: ${{ env.DEPLOY_USER }}
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         port: ${{ env.DEPLOY_PORT }}
-        script: |
-          hostname -f
+        script: hostname -f
