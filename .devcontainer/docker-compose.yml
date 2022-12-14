@@ -8,7 +8,7 @@ services:
     env_file:
       - ../${APP_NAME}/.env
     ports:
-      - ${PORT}:${PORT}
+      - ${APP_PORT}:${APP_PORT}
     tty: true
     volumes:
       - ../${APP_NAME}/src:/app
@@ -20,7 +20,7 @@ services:
     env_file:
       - ../${APP_NAME}/.env
     ports:
-      - ${PORT}:${PORT}
+      - ${APP_PORT}:${APP_PORT}
     tty: true
     volumes:
       - ../${APP_NAME}/src:/app
