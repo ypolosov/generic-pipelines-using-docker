@@ -16,9 +16,9 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
-    # - name: Docker in Docker
-    #   run: |
-    #     curl -fsSL get.docker.com | sh
+    - name: Docker in Docker
+      run: |
+        curl -fsSL get.docker.com | sh
 
     - name: Config
       run: |
@@ -26,22 +26,22 @@ jobs:
         cat ${CONFIG_PATH} >> $GITHUB_ENV
         echo $GITHUB_ENV
 
-    # - name: Ci
-    #   run: |
-    #     ./agnostic-pipeline/stages/01_ci.sh
+    - name: Ci
+      run: |
+        ./agnostic-pipeline/stages/01_ci.sh
 
-    # - name: Build
-    #   run: |
-    #     ./agnostic-pipeline/stages/02_build.sh
+    - name: Build
+      run: |
+        ./agnostic-pipeline/stages/02_build.sh
 
-    # - name: Test
-    #   run: |
-    #     ./agnostic-pipeline/stages/03_test.sh
+    - name: Test
+      run: |
+        ./agnostic-pipeline/stages/03_test.sh
 
-    # - name: Archive
-    #   run: |
-    #     export DOCKER_PASSWORD="${{secrets.DOCKER_PASSWORD}}"
-    #     ./agnostic-pipeline/stages/04_archive.sh
+    - name: Archive
+      run: |
+        export DOCKER_PASSWORD="${{secrets.DOCKER_PASSWORD}}"
+        ./agnostic-pipeline/stages/04_archive.sh
 
 
 
@@ -113,4 +113,4 @@ jobs:
         username: ${{ env.DEPLOY_USER }}
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         port: ${{ env.DEPLOY_PORT }}
-        script: whoami
+        script: ./agnostic-pipeline/stages/05_deploy.sh
