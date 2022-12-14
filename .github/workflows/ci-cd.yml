@@ -109,8 +109,8 @@ jobs:
     - name: Deploy
       uses: appleboy/ssh-action@v0.1.6
       with:
-        host: ${{ env.DEPLOY_HOST }}
-        username: ${{ env.DEPLOY_USER }}
+        host: 158.160.50.242
+        username: ypolosov
         key: ${{ secrets.SSH_PRIVATE_KEY }}
-        port: ${{ env.DEPLOY_PORT }}
+        port: 22
         script: whoami
