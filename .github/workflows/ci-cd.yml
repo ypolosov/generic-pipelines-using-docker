@@ -52,19 +52,14 @@ jobs:
 
 
 
-
-    - name: Install SSH Key
-      uses: shimataro/ssh-key-action@v2
-      with:
-        key: ${{ secrets.SSH_PRIVATE_KEY }} 
-        known_hosts: 'just-a-placeholder-so-we-dont-get-errors'
-
     - name: Deploy
       run: |
         mkdir -p ~/.ssh && touch ~/.ssh/known_hosts
         chmod 700 ~/.ssh
         chmod 644 ~/.ssh/known_hosts
         ssh-keyscan ${{ env.DEPLOY_HOST }} >> ~/.ssh/known_hosts
+        ssh-agent -a /tmp/ssh_agent.sock > /dev/null
+        ssh-add - <<< "${{ secrets.SSH_PRIVATE_KEY }}"
         ./agnostic-pipeline/stages/05_deploy.sh
 
     # - name: executing remote ssh commands using password
