@@ -26,24 +26,39 @@ jobs:
         cat ${CONFIG_PATH} >> $GITHUB_ENV
         echo $GITHUB_ENV
 
-    - name: Ci
-      run: |
-        ./agnostic-pipeline/stages/01_ci.sh
+    # - name: Ci
+    #   run: |
+    #     ./agnostic-pipeline/stages/01_ci.sh
 
-    - name: Build
-      run: |
-        ./agnostic-pipeline/stages/02_build.sh
+    # - name: Build
+    #   run: |
+    #     ./agnostic-pipeline/stages/02_build.sh
 
-    - name: Test
-      run: |
-        ./agnostic-pipeline/stages/03_test.sh
+    # - name: Test
+    #   run: |
+    #     ./agnostic-pipeline/stages/03_test.sh
 
-    - name: Archive
-      run: |
-        export DOCKER_PASSWORD="${{secrets.DOCKER_PASSWORD}}"
-        ./agnostic-pipeline/stages/04_archive.sh
+    # - name: Archive
+    #   run: |
+    #     export DOCKER_PASSWORD="${{secrets.DOCKER_PASSWORD}}"
+    #     ./agnostic-pipeline/stages/04_archive.sh
 
+    # - name: Pre-deploy
+    #   id: pre-deploy
+    #   uses: andstor/file-reader-action@v1
+    #   with:
+    #     path: ./agnostic-pipeline/stages/05_deploy.sh
 
+    - name: Deploy
+      uses: appleboy/ssh-action@v0.1.6
+      with:
+        host: ${{ env.DEPLOY_HOST }}
+        username: ${{ env.DEPLOY_USER }}
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        port: ${{ env.DEPLOY_PORT }}
+        envs: PROJECT_DIR
+        script: ./agnostic-pipeline/stages/05_deploy.sh
+        # script: ${{ steps.pre-deploy.outputs.contents }}
 
 
 
@@ -100,18 +115,3 @@ jobs:
     #   run: |
     #     ssh -vvv ypolosov@158.160.50.242 hostname -f
 
-    - name: Pre-deploy
-      id: pre-deploy
-      uses: andstor/file-reader-action@v1
-      with:
-        path: ./agnostic-pipeline/stages/05_deploy.sh
-
-    - name: Deploy
-      uses: appleboy/ssh-action@v0.1.6
-      with:
-        host: ${{ env.DEPLOY_HOST }}
-        username: ${{ env.DEPLOY_USER }}
-        key: ${{ secrets.SSH_PRIVATE_KEY }}
-        port: ${{ env.DEPLOY_PORT }}
-        envs: PROJECT_DIR
-        script: ${{ steps.pre-deploy.outputs.contents }}
