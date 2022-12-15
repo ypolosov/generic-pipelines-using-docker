@@ -13,7 +13,7 @@ jobs:
     env:
       PROJECT_DIR: app-1
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v2
 
     # - name: Docker in Docker
     #   run: |
@@ -21,7 +21,6 @@ jobs:
 
     - name: Import environment variables from a file
       run: |
-        echo "CONFIG_PATH=./app-1/.env" >> $GITHUB_ENV
         cat ./app-1/.env >> $GITHUB_ENV
 
     # - name: Ci
