@@ -12,7 +12,6 @@ jobs:
     container: node:lts
     env:
       PROJECT_DIR: app-1
-      SSH_AUTH_SOCK: /tmp/ssh_agent.sock
     steps:
     - uses: actions/checkout@v3
 
@@ -60,7 +59,8 @@ jobs:
         ssh-keyscan -p ${{ env.DEPLOY_PORT }} -t rsa ${{ env.DEPLOY_HOST }} >> ~/.ssh/known_hosts
         ssh-agent -a $SSH_AUTH_SOCK > /dev/null
         ssh-add - <<< "${{ secrets.SSH_PRIVATE_KEY }}"
-        bash ./agnostic-pipeline/stages/05_deploy.sh
+        # bash ./agnostic-pipeline/stages/05_deploy.sh
+        hostname -f
 
     # - name: executing remote ssh commands using password
     #   uses: appleboy/ssh-action@master
