@@ -12,7 +12,7 @@ jobs:
     container: node:lts
     env:
       PROJECT_DIR: app-1
-      CONFIG_PATH: $PROJECT_DIR/.env
+      CONFIG_PATH: ${{ env.PROJECT_DIR }}/.env
     steps:
     - uses: actions/checkout@v3
 
