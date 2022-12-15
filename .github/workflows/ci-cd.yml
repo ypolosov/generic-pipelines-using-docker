@@ -9,7 +9,6 @@ jobs:
   pipeline-job:
 
     runs-on: ubuntu-latest
-    container: node:lts
     env:
       PROJECT_DIR: app-1
     steps:
