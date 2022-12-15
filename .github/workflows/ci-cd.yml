@@ -19,12 +19,15 @@ jobs:
     #   run: |
     #     curl -fsSL get.docker.com | sh
 
-    - name: Config
+    - name: Import environment variables from a file
+      id: import-env
+      shell: bash
       run: |
-        export CONFIG_PATH=$PROJECT_DIR/.env
-        # cat ${CONFIG_PATH} >> $GITHUB_ENV
-        # echo $GITHUB_ENV
-        export $(grep -v '^#' .env | xargs)
+        CONFIG_PATH=$PROJECT_DIR/.env
+        echo "$CONFIG_PATH" >> $GITHUB_ENV
+        while read line; do
+          echo "$line" >> $GITHUB_ENV
+        done < $CONFIG_PATH
 
     # - name: Ci
     #   run: |
