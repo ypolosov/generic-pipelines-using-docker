@@ -12,13 +12,13 @@ jobs:
     container: node:lts
     env:
       PROJECT_DIR: app-1
-
+      SSH_AUTH_SOCK: /tmp/ssh_agent.sock
     steps:
     - uses: actions/checkout@v3
 
-    - name: Docker in Docker
-      run: |
-        curl -fsSL get.docker.com | sh
+    # - name: Docker in Docker
+    #   run: |
+    #     curl -fsSL get.docker.com | sh
 
     - name: Config
       run: |
@@ -55,16 +55,12 @@ jobs:
     - name: Deploy
       env:
           SSH_AUTH_SOCK: /tmp/ssh_agent.sock
-          DOCKER_HOST: ssh://${{ env.DEPLOY_USER }}@${{ env.DEPLOY_HOST }}:${{ env.DEPLOY_PORT }}
       run: |
-        mkdir -p ~/.ssh && touch ~/.ssh/known_hosts
-        chmod 700 ~/.ssh
-        chmod 644 ~/.ssh/known_hosts
-        ssh-keyscan ${{ env.DEPLOY_HOST }} >> ~/.ssh/known_hosts
+        mkdir -p ~/.ssh
+        ssh-keyscan -p ${{ env.DEPLOY_PORT }} -t rsa ${{ env.DEPLOY_HOST }} >> ~/.ssh/known_hosts
         ssh-agent -a $SSH_AUTH_SOCK > /dev/null
         ssh-add - <<< "${{ secrets.SSH_PRIVATE_KEY }}"
-        docker run --rm -d --net host -e "APP_PORT=${{ env.APP_PORT }}" -e "APP_NAME=${{ env.APP_NAME }}" "${IMAGE}"
-        # ./agnostic-pipeline/stages/05_deploy.sh
+        ./agnostic-pipeline/stages/05_deploy.sh
 
     # - name: executing remote ssh commands using password
     #   uses: appleboy/ssh-action@master
@@ -122,3 +118,12 @@ jobs:
     #       ls -la
     #     # script: ./agnostic-pipeline/stages/05_deploy.sh
     #     # script: ${{ steps.pre-deploy.outputs.contents }}
+
+
+
+
+
+
+
+
+    
