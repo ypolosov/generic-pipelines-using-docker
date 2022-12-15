@@ -14,7 +14,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
-    - name: Import environment variables from a file
+    - name: Config
       run: |
         cat ./app-1/.env >> $GITHUB_ENV
 
