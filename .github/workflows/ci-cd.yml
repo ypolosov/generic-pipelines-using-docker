@@ -55,7 +55,7 @@ jobs:
     - name: Deploy
       env:
           SSH_AUTH_SOCK: /tmp/ssh_agent.sock
-          # DOCKER_HOST: ssh://${{ env.DEPLOY_USER }}@${{ env.DEPLOY_HOST }}:${{ env.DEPLOY_PORT }}
+          DOCKER_HOST: ssh://${{ env.DEPLOY_USER }}@${{ env.DEPLOY_HOST }}:${{ env.DEPLOY_PORT }}
       run: |
         mkdir -p ~/.ssh && touch ~/.ssh/known_hosts
         chmod 700 ~/.ssh
