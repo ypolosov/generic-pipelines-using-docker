@@ -22,23 +22,22 @@ jobs:
       run: |
         cat ./app-1/.env >> $GITHUB_ENV
 
-    # - name: Ci
-    #   run: |
-    #     ./agnostic-pipeline/stages/01_ci.sh
+    - name: Ci
+      run: |
+        ./agnostic-pipeline/stages/01_ci.sh
 
-    # - name: Build
-    #   run: |
-    #     ./agnostic-pipeline/stages/02_build.sh
+    - name: Build
+      run: |
+        ./agnostic-pipeline/stages/02_build.sh
 
-    # - name: Test
-    #   run: |
-    #     ./agnostic-pipeline/stages/03_test.sh
+    - name: Test
+      run: |
+        ./agnostic-pipeline/stages/03_test.sh
 
-    # - name: Archive
-    #   run: |
-    #     export DOCKER_PASSWORD="${{secrets.DOCKER_PASSWORD}}"
-    #     ./agnostic-pipeline/stages/04_archive.sh
-
+    - name: Archive
+      run: |
+        export DOCKER_PASSWORD="${{secrets.DOCKER_PASSWORD}}"
+        ./agnostic-pipeline/stages/04_archive.sh
 
     - name: Deploy
       env:
