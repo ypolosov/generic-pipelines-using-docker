@@ -57,7 +57,10 @@ jobs:
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         port: ${{ env.DEPLOY_PORT }}
         envs: PROJECT_DIR
-        script: ./agnostic-pipeline/stages/05_deploy.sh
+        script: |
+          pwd
+          ls -la
+        # script: ./agnostic-pipeline/stages/05_deploy.sh
         # script: ${{ steps.pre-deploy.outputs.contents }}
 
 
