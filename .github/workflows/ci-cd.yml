@@ -12,11 +12,7 @@ jobs:
     env:
       PROJECT_DIR: app-1
     steps:
-    - uses: actions/checkout@v2
-
-    # - name: Docker in Docker
-    #   run: |
-    #     curl -fsSL get.docker.com | sh
+    - uses: actions/checkout@v3
 
     - name: Import environment variables from a file
       run: |
