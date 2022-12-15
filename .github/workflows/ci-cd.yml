@@ -16,9 +16,9 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
-    # - name: Docker in Docker
-    #   run: |
-    #     curl -fsSL get.docker.com | sh
+    - name: Docker in Docker
+      run: |
+        curl -fsSL get.docker.com | sh
 
     - name: Config
       run: |
