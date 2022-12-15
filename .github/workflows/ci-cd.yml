@@ -60,7 +60,7 @@ jobs:
         ssh-keyscan -p ${{ env.DEPLOY_PORT }} -t rsa ${{ env.DEPLOY_HOST }} >> ~/.ssh/known_hosts
         ssh-agent -a $SSH_AUTH_SOCK > /dev/null
         ssh-add - <<< "${{ secrets.SSH_PRIVATE_KEY }}"
-        ./agnostic-pipeline/stages/05_deploy.sh
+        bash ./agnostic-pipeline/stages/05_deploy.sh
 
     # - name: executing remote ssh commands using password
     #   uses: appleboy/ssh-action@master
