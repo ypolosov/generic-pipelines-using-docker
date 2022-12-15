@@ -53,12 +53,14 @@ jobs:
 
 
     - name: Deploy
+      env:
+          SSH_AUTH_SOCK: /tmp/ssh_agent.sock
       run: |
         mkdir -p ~/.ssh && touch ~/.ssh/known_hosts
         chmod 700 ~/.ssh
         chmod 644 ~/.ssh/known_hosts
         ssh-keyscan ${{ env.DEPLOY_HOST }} >> ~/.ssh/known_hosts
-        ssh-agent -a /tmp/ssh_agent.sock > /dev/null
+        ssh-agent -a $SSH_AUTH_SOCK > /dev/null
         ssh-add - <<< "${{ secrets.SSH_PRIVATE_KEY }}"
         ./agnostic-pipeline/stages/05_deploy.sh
 
