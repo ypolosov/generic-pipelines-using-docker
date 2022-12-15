@@ -21,9 +21,10 @@ jobs:
 
     - name: Config
       run: |
-        CONFIG_PATH=$PROJECT_DIR/.env
-        cat ${CONFIG_PATH} >> $GITHUB_ENV
-        echo $GITHUB_ENV
+        export CONFIG_PATH=$PROJECT_DIR/.env
+        # cat ${CONFIG_PATH} >> $GITHUB_ENV
+        # echo $GITHUB_ENV
+        export $(grep -v '^#' .env | xargs)
 
     # - name: Ci
     #   run: |
