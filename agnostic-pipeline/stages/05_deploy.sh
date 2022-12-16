@@ -12,7 +12,7 @@ source "${CONFIG_PATH}"
 
 IMAGE="${ARCHIVE_REGISTRY}/${ARCHIVE_ACCOUNT}/${ARCHIVE_APP_NAME}:${ARCHIVE_TAG_NAME}"
 
-SSH_AUTH_SOCK=/tmp/ssh_agent.sock
+export SSH_AUTH_SOCK=/tmp/ssh_agent.sock
 mkdir -p ~/.ssh
 ssh-keyscan -p ${DEPLOY_PORT} -t rsa ${DEPLOY_HOST} >> ~/.ssh/known_hosts
 ssh-agent -a ${SSH_AUTH_SOCK} > /dev/null
