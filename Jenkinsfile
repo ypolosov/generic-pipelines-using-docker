@@ -1,5 +1,5 @@
 pipeline {
-    agent any
+    agent { docker { image 'ubuntu:lts' } }
 
     stages {
         stage('Config') {
