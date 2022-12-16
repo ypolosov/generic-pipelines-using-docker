@@ -20,11 +20,13 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Hello Build'
+                sh './agnostic-pipeline/stages/02_build.sh'
             }
         }
         stage('Test') {
             steps {
                 echo 'Hello Test'
+                sh './agnostic-pipeline/stages/03_test.sh'
             }
         }
         stage('Archive') {
