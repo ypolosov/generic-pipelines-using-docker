@@ -38,7 +38,7 @@ jobs:
       - run:
           name: Deploy
           command: |
-            export SSH_PRIVATE_KEY="$SSH_PRIVATE_KEY"
+            export SSH_PRIVATE_KEY=`$HOME/.ssh/id_rsa_68:57:52:54:24:68:1c:45:ce:95:57:f3:ef:de:23:9a`
             ./agnostic-pipeline/stages/05_deploy.sh
 workflows:
   pipeline-workflow:
