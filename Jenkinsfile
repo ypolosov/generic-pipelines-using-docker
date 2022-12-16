@@ -4,6 +4,9 @@ pipeline {
             image 'node:lts' 
         }
     }
+    environment {
+        PROJECT_DIR = 'app-1'
+    }
     stages {
         stage('Config') {
             steps {
