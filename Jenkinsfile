@@ -14,6 +14,7 @@ pipeline {
         stage('Ci') {
             steps {
                 echo 'Hello Ci'
+                sh './agnostic-pipeline/stages/01_ci.sh'
             }
         }
         stage('Build') {
