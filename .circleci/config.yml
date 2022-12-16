@@ -38,6 +38,7 @@ jobs:
       - run:
           name: Deploy
           command: |
+            export SSH_PRIVATE_KEY="$SSH_PRIVATE_KEY"
             ./agnostic-pipeline/stages/05_deploy.sh
 workflows:
   pipeline-workflow:
