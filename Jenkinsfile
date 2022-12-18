@@ -2,7 +2,8 @@ pipeline {
     agent { 
         docker {
             image 'node:lts'
-            args '-v /var/run/docker.sock:/var/run/docker.sock'
+            label 'frontend'
+            args '-v /var/run/docker.sock:/var/run/docker.sock -v /var/run/dbus/system_bus_socket:/var/run/dbus/system_bus_socket -e HOME=${workspace} --group-add docker'
         }
     }
     environment {
