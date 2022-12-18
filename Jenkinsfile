@@ -52,7 +52,7 @@ pipeline {
                 echo 'Hello Deploy'
                 sh '''
                     export SSH_PRIVATE_KEY="$SSH_PRIVATE_KEY"
-                    ./agnostic-pipeline/stages/05_deploy.sh
+                    ls -la $HOME/.ssh
                 '''
             }
         }
