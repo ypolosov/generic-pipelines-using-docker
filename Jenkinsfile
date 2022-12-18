@@ -9,11 +9,6 @@ pipeline {
         PROJECT_DIR = 'app-1'
     }
     stages {
-        stage('Docker in Docker') {
-            steps {
-                sh 'curl -fsSL get.docker.com | sh'
-            }
-        }
         stage('Config') {
             steps {
                 checkout scm
