@@ -8,6 +8,8 @@ services:
     image: localhost:5000/jenkins-docker
     build: .
     restart: unless-stopped
+    env_file:
+      - .env
     user: 1000:999
     ports:
       - target: 8080
