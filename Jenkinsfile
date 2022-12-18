@@ -33,8 +33,15 @@ pipeline {
             }
         }
         stage('Archive') {
+            environment { 
+                DOCKER_PASSWORD = credentials('docker-password')
+            }
             steps {
                 echo 'Hello Archive'
+                sh '''
+                    export DOCKER_PASSWORD="$DOCKER_PASSWORD"
+                    ./agnostic-pipeline/stages/04_archive.sh
+                '''
             }
         }
         stage('Deploy') {
