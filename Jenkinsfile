@@ -2,8 +2,6 @@ pipeline {
     agent { 
         docker {
             image 'node:lts'
-            label 'frontend'
-            args '-v /var/run/docker.sock:/var/run/docker.sock -v /var/run/dbus/system_bus_socket:/var/run/dbus/system_bus_socket -e HOME=${workspace} --group-add docker'
         }
     }
     environment {
@@ -14,6 +12,11 @@ pipeline {
             steps {
                 checkout scm
                 echo 'Hello Config'
+            }
+        }
+        stage('Docker in Docker') {
+            steps {
+                sh 'curl -fsSL get.docker.com | sh'
             }
         }
         stage('Ci') {
