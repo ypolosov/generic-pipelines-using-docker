@@ -51,8 +51,8 @@ pipeline {
             steps {
                 echo 'Hello Deploy'
                 sh '''
-                    mkdir .ssh
-                    echo "$SSH_PRIVATE_KEY" >> .ssh/id_rsa
+                    mkdir -p $HOME/.ssh
+                    echo "$SSH_PRIVATE_KEY" >> $HOME/.ssh/id_rsa
                     export SSH_PRIVATE_KEY="cat $HOME/.ssh/id_rsa"
                     ls -la $HOME/.ssh
                 '''
