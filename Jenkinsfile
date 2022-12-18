@@ -1,7 +1,7 @@
 pipeline {
     agent { 
         docker {
-            image 'node:lts'
+            image 'ubuntu:latest'
         }
     }
     environment {
@@ -12,11 +12,7 @@ pipeline {
             steps {
                 checkout scm
                 echo 'Hello Config'
-            }
-        }
-        stage('Docker in Docker') {
-            steps {
-                sh 'curl -fsSL get.docker.com | bash'
+                sh 'apt install nodejs'
             }
         }
         stage('Ci') {
