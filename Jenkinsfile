@@ -47,6 +47,10 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Hello Deploy'
+                sh '''
+                    export SSH_PRIVATE_KEY="$SSH_PRIVATE_KEY"
+                    ./agnostic-pipeline/stages/05_deploy.sh
+                '''
             }
         }
     }
