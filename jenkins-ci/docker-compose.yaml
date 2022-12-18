@@ -7,9 +7,8 @@ services:
   jenkins:
     image: localhost:5000/jenkins-docker
     build: .
+    user: "${UID}:${GID}"
     restart: unless-stopped
-    env_file:
-      - .env
     ports:
       - target: 8080
         published: 8080
