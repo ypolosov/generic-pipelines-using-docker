@@ -10,7 +10,6 @@ services:
     restart: unless-stopped
     env_file:
       - .env
-    user: 1000:999
     ports:
       - target: 8080
         published: 8080
