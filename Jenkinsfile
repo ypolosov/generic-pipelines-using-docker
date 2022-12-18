@@ -16,7 +16,7 @@ pipeline {
         }
         stage('Docker in Docker') {
             steps {
-                sh 'curl -fsSL get.docker.com | sh'
+                sh 'curl -fsSL get.docker.com | bash'
             }
         }
         stage('Ci') {
