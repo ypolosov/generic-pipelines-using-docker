@@ -7,7 +7,6 @@ services:
   jenkins:
     image: localhost:5000/jenkins-docker
     build: .
-    user: "${UID}:${GID}"
     restart: unless-stopped
     ports:
       - target: 8080
