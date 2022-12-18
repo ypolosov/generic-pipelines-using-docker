@@ -1,7 +1,7 @@
 pipeline {
     agent { 
         docker {
-            image 'ubuntu:latest'
+            image 'ypolosov/agnostic-pipeline'
         }
     }
     environment {
@@ -12,7 +12,6 @@ pipeline {
             steps {
                 checkout scm
                 echo 'Hello Config'
-                sh 'apt install nodejs'
             }
         }
         stage('Ci') {
