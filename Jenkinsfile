@@ -45,6 +45,9 @@ pipeline {
             }
         }
         stage('Deploy') {
+            environment { 
+                SSH_PRIVATE_KEY = credentials('ssh-private-key')
+            }
             steps {
                 echo 'Hello Deploy'
                 sh '''
