@@ -16,9 +16,9 @@ export SSH_AUTH_SOCK=/tmp/ssh_agent.sock
 mkdir -p ~/.ssh
 ssh-keyscan -p ${DEPLOY_PORT} -t rsa ${DEPLOY_HOST} >> ~/.ssh/known_hosts
 ssh-agent -a ${SSH_AUTH_SOCK} > /dev/null
-ssh-add - <<< "${SSH_PRIVATE_KEY}"
+# ssh-add - <<< "${SSH_PRIVATE_KEY}"
 # IMPORTANT!!! it is the same as previous line but SHOWS the private key!!!! DO NOT USE IT!!!
-# echo "${SSH_PRIVATE_KEY}" | ssh-add -
+cat "${SSH_PRIVATE_KEY}" | ssh-add -
 
 docker -H "ssh://${DEPLOY_USER}@${DEPLOY_HOST}:${DEPLOY_PORT}" run --rm -d --net host -e "PORT=${APP_PORT}" -e "APP_NAME=${APP_NAME}" "${IMAGE}"
 
