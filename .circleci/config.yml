@@ -2,7 +2,7 @@ version: 2.1
 jobs:
   pipeline-job:
     docker:
-      - image: node:lts
+      - image: ypolosov/agnostic-pipeline
     environment:
       PROJECT_DIR: app-1
     working_directory: /app
@@ -14,10 +14,6 @@ jobs:
       - add_ssh_keys:
           fingerprints:
             - "68:57:52:54:24:68:1c:45:ce:95:57:f3:ef:de:23:9a"
-      - run:
-          name: Docker in Docker
-          command: |
-            curl -fsSL get.docker.com | sh
       - run:
           name: Ci
           command: |
