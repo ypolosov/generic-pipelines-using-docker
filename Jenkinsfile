@@ -12,6 +12,7 @@ pipeline {
             steps {
                 checkout scm
                 echo 'Hello Config'
+                whoami
             }
         }
         stage('Ci') {
