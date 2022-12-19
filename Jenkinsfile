@@ -46,28 +46,29 @@ pipeline {
         //     }
         // }
         stage('Deploy') {
+            environment {
+              SSH_PRIVATE_KEY = credentials('ssh-private-key')
+            }
             steps {
                 echo 'Hello Deploy'
-                withCredentials([sshUserPrivateKey(credentialsId: 'ssh-private-key-file', keyFileVariable: 'SSH_PRIVATE_KEY')]) {
-                    sh '''
-                        echo ${SSH_PRIVATE_KEY}
-                        cat ${SSH_PRIVATE_KEY} > ./key_key.key
-                        chmod 600 ./key_key.key
-                        cat ./key_key.key
-                        export SSH_PRIVATE_KEY=`cat ./key_key.key`
-                        ./agnostic-pipeline/stages/05_deploy.sh
-                    '''
-                }
-                // withCredentials([string(credentialsId: 'SSH_PRIVATE_KEY', variable: 'SSH_PRIVATE_KEY')]) {
-                //   sh '''
-                //     mkdir -p $HOME/.ssh
-                //     ls -la
-                //     echo "$SSH_PRIVATE_KEY" >> $HOME/.ssh/id_rsa
-                //     ls -la $HOME/.ssh
-                //     export SSH_PRIVATE_KEY="cat $HOME/.ssh/id_rsa"
-                //     ./agnostic-pipeline/stages/05_deploy.sh
-                //   '''
+                // withCredentials([sshUserPrivateKey(credentialsId: 'ssh-private-key-file', keyFileVariable: 'SSH_PRIVATE_KEY')]) {
+                //     sh '''
+                //         echo ${SSH_PRIVATE_KEY}
+                //         cat ${SSH_PRIVATE_KEY} > ./key_key.key
+                //         chmod 600 ./key_key.key
+                //         cat ./key_key.key
+                //         export SSH_PRIVATE_KEY=`cat ./key_key.key`
+                //         ./agnostic-pipeline/stages/05_deploy.sh
+                //     '''
                 // }
+                sh '''
+                  mkdir -p $HOME/.ssh
+                  ls -la
+                  echo "$SSH_PRIVATE_KEY" >> $HOME/.ssh/id_rsa
+                  ls -la $HOME/.ssh
+                  export SSH_PRIVATE_KEY="cat $HOME/.ssh/id_rsa"
+                  ./agnostic-pipeline/stages/05_deploy.sh
+                '''
             }
         }
     }
