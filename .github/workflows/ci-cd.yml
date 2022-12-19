@@ -1,4 +1,4 @@
-name: Docker Image CI
+name: Pipeline workflow
 
 on:
   push:
@@ -10,6 +10,7 @@ jobs:
     env:
       PROJECT_DIR: app-1
     steps:
+      - uses: docker://docker.io/ypolosov/agnostic-pipeline
       - uses: actions/checkout@v3
 
       - name: Config
