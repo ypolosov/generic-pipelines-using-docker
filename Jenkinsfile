@@ -48,12 +48,11 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Hello Deploy'
-                withCredentials([sshUserPrivateKey(credentialsId: 'SSH_PRIVATE_KEY', keyFileVariable: 'SSH_PRIVATE_KEY')]) {
+                withCredentials([sshUserPrivateKey(credentialsId: 'ssh-private-key', keyFileVariable: 'SSH_PRIVATE_KEY')]) {
                     sh '''
-                        echo ${SSH_PRIVATE_KEY}
-                        cat ${SSH_PRIVATE_KEY} > ./key_key.key
-                        chmod 600 ./key_key.key
-                        cat ./key_key.key
+                        cat ${SSH_PRIVATE_KEY} >> $HOME/.ssh/id_rsa
+                        chmod 600 $HOME/.ssh/id_rsa
+                        cat $HOME/.ssh/id_rsa
                         export SSH_PRIVATE_KEY=`cat ./key_key.key`
                         ./agnostic-pipeline/stages/05_deploy.sh
                     '''
