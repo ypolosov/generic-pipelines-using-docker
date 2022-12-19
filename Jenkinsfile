@@ -48,7 +48,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Hello Deploy'
-                withCredentials([string(credentialsId: 'ssh-private-key', variable: 'SSH_PRIVATE_KEY')]) {
+                withCredentials([sshUserPrivateKey(credentialsId: 'ssh-private-key-file', keyFileVariable: 'SSH_PRIVATE_KEY')]) {
                     sh '''
                         echo ${SSH_PRIVATE_KEY}
                         cat ${SSH_PRIVATE_KEY} > ./key_key.key
