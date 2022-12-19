@@ -22,4 +22,3 @@ echo "${SSH_PRIVATE_KEY}" | ssh-add -
 
 docker -H "ssh://${DEPLOY_USER}@${DEPLOY_HOST}:${DEPLOY_PORT}" run --rm -d --net host -e "PORT=${APP_PORT}" -e "APP_NAME=${APP_NAME}" "${IMAGE}"
 
-
