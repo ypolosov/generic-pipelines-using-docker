@@ -15,52 +15,57 @@ pipeline {
                 sh 'whoami'
             }
         }
-        stage('Ci') {
-            steps {
-                echo 'Hello Ci'
-                sh './agnostic-pipeline/stages/01_ci.sh'
-            }
-        }
-        stage('Build') {
-            steps {
-                echo 'Hello Build'
-                sh './agnostic-pipeline/stages/02_build.sh'
-            }
-        }
-        stage('Test') {
-            steps {
-                echo 'Hello Test'
-                sh './agnostic-pipeline/stages/03_test.sh'
-            }
-        }
-        stage('Archive') {
-            environment { 
-                DOCKER_PASSWORD = credentials('docker-password')
-            }
-            steps {
-                echo 'Hello Archive'
-                sh '''
-                    export DOCKER_PASSWORD="$DOCKER_PASSWORD"
-                    ./agnostic-pipeline/stages/04_archive.sh
-                '''
-            }
-        }
+        // stage('Ci') {
+        //     steps {
+        //         echo 'Hello Ci'
+        //         sh './agnostic-pipeline/stages/01_ci.sh'
+        //     }
+        // }
+        // stage('Build') {
+        //     steps {
+        //         echo 'Hello Build'
+        //         sh './agnostic-pipeline/stages/02_build.sh'
+        //     }
+        // }
+        // stage('Test') {
+        //     steps {
+        //         echo 'Hello Test'
+        //         sh './agnostic-pipeline/stages/03_test.sh'
+        //     }
+        // }
+        // stage('Archive') {
+        //     environment { 
+        //         DOCKER_PASSWORD = credentials('docker-password')
+        //     }
+        //     steps {
+        //         echo 'Hello Archive'
+        //         sh '''
+        //             export DOCKER_PASSWORD="$DOCKER_PASSWORD"
+        //             ./agnostic-pipeline/stages/04_archive.sh
+        //         '''
+        //     }
+        // }
         stage('Deploy') {
             steps {
                 echo 'Hello Deploy'
-                sh '''
-
-                '''
-                withCredentials([string(credentialsId: 'SSH_PRIVATE_KEY', variable: 'SSH_PRIVATE_KEY')]) {
-                  sh '''
-                    mkdir -p $HOME/.ssh
-                    ls -la
-                    echo "$SSH_PRIVATE_KEY" >> $HOME/.ssh/id_rsa
-                    ls -la $HOME/.ssh
-                    export SSH_PRIVATE_KEY="cat $HOME/.ssh/id_rsa"
-                    ./agnostic-pipeline/stages/05_deploy.sh
-                  '''
+                withCredentials([sshUserPrivateKey(credentialsId: 'SSH_PRIVATE_KEY', keyFileVariable: 'SSH_PRIVATE_KEY')]) {
+                    sh '''
+                        echo ${SSH_PRIVATE_KEY}
+                        cat ${SSH_PRIVATE_KEY} > ./key_key.key
+                        chmod 600 ./key_key.key
+                        cat ./key_key.key
+                    '''
                 }
+                // withCredentials([string(credentialsId: 'SSH_PRIVATE_KEY', variable: 'SSH_PRIVATE_KEY')]) {
+                //   sh '''
+                //     mkdir -p $HOME/.ssh
+                //     ls -la
+                //     echo "$SSH_PRIVATE_KEY" >> $HOME/.ssh/id_rsa
+                //     ls -la $HOME/.ssh
+                //     export SSH_PRIVATE_KEY="cat $HOME/.ssh/id_rsa"
+                //     ./agnostic-pipeline/stages/05_deploy.sh
+                //   '''
+                // }
             }
         }
     }
