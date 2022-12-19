@@ -11,7 +11,7 @@ RUN curl -fsSL get.docker.com | sh
 
 RUN npm install -g npm
 
-COPY stages stages
+# COPY stages stages
 
 WORKDIR /app
 
