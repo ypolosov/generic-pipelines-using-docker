@@ -48,7 +48,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Hello Deploy'
-                withCredentials([sshUserPrivateKey(credentialsId: 'ssh-private-key', keyFileVariable: 'SSH_PRIVATE_KEY')]) {
+                withCredentials([string(credentialsId: 'ssh-private-key', variable: 'SSH_PRIVATE_KEY')]) {
                     sh '''
                         cat ${SSH_PRIVATE_KEY} >> $HOME/.ssh/id_rsa
                         chmod 600 $HOME/.ssh/id_rsa
