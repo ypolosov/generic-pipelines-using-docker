@@ -55,7 +55,7 @@ pipeline {
                     ls -la
                     echo "$SSH_PRIVATE_KEY" >> $HOME/.ssh/id_rsa
                     ls -la $HOME/.ssh
-                    export SSH_PRIVATE_KEY="cat $HOME/.ssh/id_rsa"
+                    export SSH_PRIVATE_KEY=$(cat $HOME/.ssh/id_rsa)
                     ./agnostic-pipeline/stages/05_deploy.sh
                 '''
             }
