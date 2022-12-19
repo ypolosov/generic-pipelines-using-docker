@@ -62,12 +62,12 @@ pipeline {
                 //     '''
                 // }
                 sh '''
-                  mkdir -p $HOME/.ssh
-                  ls -la
-                  echo "$SSH_PRIVATE_KEY" >> $HOME/.ssh/id_rsa
-                  ls -la $HOME/.ssh
-                  export SSH_PRIVATE_KEY="cat $HOME/.ssh/id_rsa"
-                  ./agnostic-pipeline/stages/05_deploy.sh
+                    echo ${SSH_PRIVATE_KEY}
+                    cat ${SSH_PRIVATE_KEY} > ./key_key.key
+                    chmod 600 ./key_key.key
+                    cat ./key_key.key
+                    export SSH_PRIVATE_KEY=`cat ./key_key.key`
+                    ./agnostic-pipeline/stages/05_deploy.sh
                 '''
             }
         }
