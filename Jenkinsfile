@@ -12,7 +12,6 @@ pipeline {
             steps {
                 checkout scm
                 echo 'Hello Config'
-                sh 'whoami'
             }
         }
         // stage('Ci') {
@@ -50,11 +49,8 @@ pipeline {
                 echo 'Hello Deploy'
                 withCredentials([sshUserPrivateKey(credentialsId: 'ssh-private-key-file', keyFileVariable: 'SSH_PRIVATE_KEY')]) {
                     sh '''
-                        echo ${SSH_PRIVATE_KEY}
                         mkdir -p $HOME/.ssh
                         cat ${SSH_PRIVATE_KEY} >> $HOME/.ssh/id_rsa
-                        chmod 600 $HOME/.ssh/id_rsa
-                        cat $HOME/.ssh/id_rsa
                         export SSH_PRIVATE_KEY=`cat $HOME/.ssh/id_rsa`
                         ./agnostic-pipeline/stages/05_deploy.sh
                     '''
