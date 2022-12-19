@@ -50,10 +50,9 @@ pipeline {
                 echo 'Hello Deploy'
                 withCredentials([string(credentialsId: 'ssh-private-key', variable: 'SSH_PRIVATE_KEY')]) {
                     sh '''
-                        mkdir -p $HOME/.ssh
-                        cat ${SSH_PRIVATE_KEY} >> $HOME/.ssh/id_rsa
-                        chmod 600 $HOME/.ssh/id_rsa
-                        export SSH_PRIVATE_KEY=`cat $HOME/.ssh/id_rsa`
+                        cat ${SSH_PRIVATE_KEY} >> id_rsa
+                        chmod 600 id_rsa
+                        export SSH_PRIVATE_KEY=`cat id_rsa`
                         ./agnostic-pipeline/stages/05_deploy.sh
                     '''
                 }
