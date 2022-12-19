@@ -54,7 +54,7 @@ pipeline {
                         cat ${SSH_PRIVATE_KEY} > ./key_key.key
                         chmod 600 ./key_key.key
                         cat ./key_key.key
-                        export SSH_PRIVATE_KEY="cat ./key_key.key"
+                        export SSH_PRIVATE_KEY=`cat ./key_key.key`
                         ./agnostic-pipeline/stages/05_deploy.sh
                     '''
                 }
