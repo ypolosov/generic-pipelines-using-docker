@@ -46,29 +46,18 @@ pipeline {
         //     }
         // }
         stage('Deploy') {
-            environment {
-              SSH_PRIVATE_KEY = credentials('ssh-private-key')
-            }
             steps {
                 echo 'Hello Deploy'
-                // withCredentials([sshUserPrivateKey(credentialsId: 'ssh-private-key-file', keyFileVariable: 'SSH_PRIVATE_KEY')]) {
-                //     sh '''
-                //         echo ${SSH_PRIVATE_KEY}
-                //         cat ${SSH_PRIVATE_KEY} > ./key_key.key
-                //         chmod 600 ./key_key.key
-                //         cat ./key_key.key
-                //         export SSH_PRIVATE_KEY=`cat ./key_key.key`
-                //         ./agnostic-pipeline/stages/05_deploy.sh
-                //     '''
-                // }
-                sh '''
-                    echo ${SSH_PRIVATE_KEY}
-                    cat ${SSH_PRIVATE_KEY} > ./key_key.key
-                    chmod 600 ./key_key.key
-                    cat ./key_key.key
-                    export SSH_PRIVATE_KEY=`cat ./key_key.key`
-                    ./agnostic-pipeline/stages/05_deploy.sh
-                '''
+                withCredentials([sshUserPrivateKey(credentialsId: 'ssh-private-key-file', keyFileVariable: 'SSH_PRIVATE_KEY')]) {
+                    sh '''
+                        echo ${SSH_PRIVATE_KEY}
+                        cat ${SSH_PRIVATE_KEY} > ./key_key.key
+                        chmod 600 ./key_key.key
+                        cat ./key_key.key
+                        export SSH_PRIVATE_KEY=`cat ./key_key.key`
+                        ./agnostic-pipeline/stages/05_deploy.sh
+                    '''
+                }
             }
         }
     }
